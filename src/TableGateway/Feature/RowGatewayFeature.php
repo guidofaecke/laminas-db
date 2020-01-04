@@ -59,7 +59,7 @@ class RowGatewayFeature extends AbstractFeature
         } else {
             // get from metadata feature
             $metadata = $this->tableGateway->featureSet->getFeatureByClassName(
-                'Laminas\Db\TableGateway\Feature\MetadataFeature'
+                MetadataFeature::class
             );
             if ($metadata === false || ! isset($metadata->sharedData['metadata'])) {
                 throw new Exception\RuntimeException(
