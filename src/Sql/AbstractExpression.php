@@ -61,8 +61,8 @@ abstract class AbstractExpression implements ExpressionInterface
             'null',
             'scalar',
             'array',
-            'Laminas\Db\Sql\ExpressionInterface',
-            'Laminas\Db\Sql\SqlInterface',
+            ExpressionInterface::class,
+            SqlInterface::class,
             is_object($argument) ? get_class($argument) : gettype($argument)
         ));
     }

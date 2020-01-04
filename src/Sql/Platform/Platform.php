@@ -151,8 +151,8 @@ class Platform extends AbstractPlatform
 
         throw new Exception\InvalidArgumentException(sprintf(
             '$adapterOrPlatform should be null, %s, or %s',
-            'Laminas\Db\Adapter\AdapterInterface',
-            'Laminas\Db\Adapter\Platform\PlatformInterface'
+            AdapterInterface::class,
+            PlatformInterface::class
         ));
     }
 

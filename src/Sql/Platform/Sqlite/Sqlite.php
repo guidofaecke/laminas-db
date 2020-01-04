@@ -9,6 +9,7 @@
 namespace Laminas\Db\Sql\Platform\Sqlite;
 
 use Laminas\Db\Sql\Platform\AbstractPlatform;
+use Laminas\Db\Sql\Select;
 
 class Sqlite extends AbstractPlatform
 {
@@ -19,6 +20,6 @@ class Sqlite extends AbstractPlatform
      */
     public function __construct()
     {
-        $this->setTypeDecorator('Laminas\Db\Sql\Select', new SelectDecorator());
+        $this->setTypeDecorator(Select::class, new SelectDecorator());
     }
 }

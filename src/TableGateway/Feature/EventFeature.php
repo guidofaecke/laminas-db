@@ -15,6 +15,7 @@ use Laminas\Db\Sql\Delete;
 use Laminas\Db\Sql\Insert;
 use Laminas\Db\Sql\Select;
 use Laminas\Db\Sql\Update;
+use Laminas\Db\TableGateway\TableGateway;
 use Laminas\EventManager\EventManager;
 use Laminas\EventManager\EventManagerInterface;
 use Laminas\EventManager\EventsCapableInterface;
@@ -46,7 +47,7 @@ class EventFeature extends AbstractFeature implements
                             : new EventManager;
 
         $this->eventManager->addIdentifiers([
-            'Laminas\Db\TableGateway\TableGateway',
+            TableGateway::class,
         ]);
 
         $this->event = ($tableGatewayEvent) ?: new EventFeature\TableGatewayEvent();
@@ -83,7 +84,7 @@ class EventFeature extends AbstractFeature implements
      */
     public function preInitialize()
     {
-        if (get_class($this->tableGateway) != 'Laminas\Db\TableGateway\TableGateway') {
+        if (get_class($this->tableGateway) != TableGateway::class) {
             $this->eventManager->addIdentifiers([get_class($this->tableGateway)]);
         }
 
