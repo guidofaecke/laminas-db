@@ -6,6 +6,8 @@
  * @license   https://github.com/laminas/laminas-db/blob/master/LICENSE.md New BSD License
  */
 
+declare(strict_types=1);
+
 namespace Laminas\Db\Sql\Ddl\Constraint;
 
 class Check extends AbstractConstraint
