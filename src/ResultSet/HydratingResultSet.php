@@ -49,7 +49,7 @@ class HydratingResultSet extends AbstractResultSet
      * @return self Provides a fluent interface
      * @throws Exception\InvalidArgumentException
      */
-    public function setObjectPrototype($objectPrototype)
+    public function setObjectPrototype(object $objectPrototype): self
     {
         if (! is_object($objectPrototype)) {
             throw new Exception\InvalidArgumentException(
@@ -65,7 +65,7 @@ class HydratingResultSet extends AbstractResultSet
      *
      * @return object
      */
-    public function getObjectPrototype()
+    public function getObjectPrototype(): object
     {
         return $this->objectPrototype;
     }
@@ -76,7 +76,7 @@ class HydratingResultSet extends AbstractResultSet
      * @param HydratorInterface $hydrator
      * @return self Provides a fluent interface
      */
-    public function setHydrator(HydratorInterface $hydrator)
+    public function setHydrator(HydratorInterface $hydrator): self
     {
         $this->hydrator = $hydrator;
         return $this;
@@ -87,7 +87,7 @@ class HydratingResultSet extends AbstractResultSet
      *
      * @return HydratorInterface
      */
-    public function getHydrator()
+    public function getHydrator(): HydratorInterface
     {
         return $this->hydrator;
     }
@@ -97,7 +97,7 @@ class HydratingResultSet extends AbstractResultSet
      *
      * @return object
      */
-    public function current()
+    public function current(): object
     {
         if ($this->buffer === null) {
             $this->buffer = -2; // implicitly disable buffering from here on
@@ -120,7 +120,7 @@ class HydratingResultSet extends AbstractResultSet
      * @return array
      * @throws Exception\RuntimeException if any row is not castable to an array
      */
-    public function toArray()
+    public function toArray(): array
     {
         $return = [];
         foreach ($this as $row) {

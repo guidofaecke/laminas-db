@@ -51,7 +51,7 @@ class Platform extends AbstractPlatform
      * @param PlatformDecoratorInterface         $decorator
      * @param AdapterInterface|PlatformInterface $adapterOrPlatform
      */
-    public function setTypeDecorator($type, PlatformDecoratorInterface $decorator, $adapterOrPlatform = null)
+    public function setTypeDecorator(string $type, PlatformDecoratorInterface $decorator, $adapterOrPlatform = null)
     {
         $platformName = $this->resolvePlatformName($adapterOrPlatform);
         $this->decorators[$platformName][$type] = $decorator;
@@ -81,7 +81,7 @@ class Platform extends AbstractPlatform
     /**
      * @return array|PlatformDecoratorInterface[]
      */
-    public function getDecorators()
+    public function getDecorators(): array
     {
         $platformName = $this->resolvePlatformName($this->getDefaultPlatform());
         return $this->decorators[$platformName];
@@ -111,7 +111,7 @@ class Platform extends AbstractPlatform
      *
      * @throws Exception\RuntimeException
      */
-    public function getSqlString(PlatformInterface $adapterPlatform = null)
+    public function getSqlString(PlatformInterface $adapterPlatform = null): string
     {
         if (! $this->subject instanceof SqlInterface) {
             throw new Exception\RuntimeException(
@@ -125,7 +125,7 @@ class Platform extends AbstractPlatform
         return $this->getTypeDecorator($this->subject, $adapterPlatform)->getSqlString($adapterPlatform);
     }
 
-    protected function resolvePlatformName($adapterOrPlatform)
+    protected function resolvePlatformName($adapterOrPlatform): string
     {
         $platformName = $this->resolvePlatform($adapterOrPlatform)->getName();
         return str_replace([' ', '_'], '', strtolower($platformName));
@@ -137,7 +137,7 @@ class Platform extends AbstractPlatform
      *
      * @throws Exception\InvalidArgumentException
      */
-    protected function resolvePlatform($adapterOrPlatform)
+    protected function resolvePlatform($adapterOrPlatform): PlatformInterface
     {
         if (! $adapterOrPlatform) {
             return $this->getDefaultPlatform();
@@ -163,7 +163,7 @@ class Platform extends AbstractPlatform
      *
      * @throws Exception\RuntimeException
      */
-    protected function getDefaultPlatform()
+    protected function getDefaultPlatform(): PlatformInterface
     {
         if (! $this->defaultPlatform) {
             throw new Exception\RuntimeException('$this->defaultPlatform was not set');

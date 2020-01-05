@@ -55,7 +55,7 @@ abstract class AbstractRowGateway implements ArrayAccess, Countable, RowGatewayI
     /**
      * initialize()
      */
-    public function initialize()
+    public function initialize(): void
     {
         if ($this->isInitialized) {
             return;

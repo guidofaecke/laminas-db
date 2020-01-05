@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Laminas\Db\Adapter\Driver\Pgsql;
 
+use Laminas\Db\Adapter\Driver\ResultInterface;
 use Laminas\Db\Adapter\Driver\StatementInterface;
 use Laminas\Db\Adapter\Exception;
 use Laminas\Db\Adapter\ParameterContainer;
@@ -61,7 +62,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
      * @param  Pgsql $driver
      * @return self Provides a fluent interface
      */
-    public function setDriver(Pgsql $driver)
+    public function setDriver(Pgsql $driver): self
     {
         $this->driver = $driver;
         return $this;
@@ -71,7 +72,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
      * @param Profiler\ProfilerInterface $profiler
      * @return self Provides a fluent interface
      */
-    public function setProfiler(Profiler\ProfilerInterface $profiler)
+    public function setProfiler(Profiler\ProfilerInterface $profiler): Profiler\ProfilerAwareInterface
     {
         $this->profiler = $profiler;
         return $this;
@@ -80,7 +81,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
     /**
      * @return null|Profiler\ProfilerInterface
      */
-    public function getProfiler()
+    public function getProfiler(): Profiler\ProfilerInterface
     {
         return $this->profiler;
     }
@@ -92,7 +93,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
      * @return void
      * @throws Exception\RuntimeException for invalid or missing postgresql connection
      */
-    public function initialize($pgsql)
+    public function initialize($pgsql): void
     {
         if (! is_resource($pgsql) || get_resource_type($pgsql) !== 'pgsql link') {
             throw new Exception\RuntimeException(sprintf(
@@ -120,7 +121,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
      * @param string $sql
      * @return self Provides a fluent interface
      */
-    public function setSql($sql)
+    public function setSql($sql): self
     {
         $this->sql = $sql;
         return $this;
@@ -142,7 +143,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
      * @param ParameterContainer $parameterContainer
      * @return self Provides a fluent interface
      */
-    public function setParameterContainer(ParameterContainer $parameterContainer)
+    public function setParameterContainer(ParameterContainer $parameterContainer): self
     {
         $this->parameterContainer = $parameterContainer;
         return $this;
@@ -153,7 +154,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
      *
      * @return ParameterContainer
      */
-    public function getParameterContainer()
+    public function getParameterContainer(): ParameterContainer
     {
         return $this->parameterContainer;
     }
@@ -186,7 +187,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
      *
      * @return bool
      */
-    public function isPrepared()
+    public function isPrepared(): bool
     {
         return isset($this->resource);
     }
@@ -198,7 +199,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
      * @throws Exception\InvalidQueryException
      * @return Result
      */
-    public function execute($parameters = null)
+    public function execute($parameters = null): ResultInterface
     {
         if (! $this->isPrepared()) {
             $this->prepare();

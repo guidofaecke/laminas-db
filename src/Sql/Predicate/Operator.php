@@ -79,8 +79,8 @@ class Operator extends AbstractExpression implements PredicateInterface
         $left = null,
         $operator = self::OPERATOR_EQUAL_TO,
         $right = null,
-        $leftType = self::TYPE_IDENTIFIER,
-        $rightType = self::TYPE_VALUE
+        string $leftType = self::TYPE_IDENTIFIER,
+        string $rightType = self::TYPE_VALUE
     ) {
         if ($left !== null) {
             $this->setLeft($left);
@@ -110,7 +110,7 @@ class Operator extends AbstractExpression implements PredicateInterface
      *
      * @return self Provides a fluent interface
      */
-    public function setLeft($left)
+    public function setLeft($left): self
     {
         $this->left = $left;
 
@@ -141,7 +141,7 @@ class Operator extends AbstractExpression implements PredicateInterface
      *
      * @throws Exception\InvalidArgumentException
      */
-    public function setLeftType($type)
+    public function setLeftType($type): self
     {
         if (! in_array($type, $this->allowedTypes)) {
             throw new Exception\InvalidArgumentException(sprintf(
@@ -162,7 +162,7 @@ class Operator extends AbstractExpression implements PredicateInterface
      *
      * @return string
      */
-    public function getLeftType()
+    public function getLeftType(): string
     {
         return $this->leftType;
     }
@@ -173,7 +173,7 @@ class Operator extends AbstractExpression implements PredicateInterface
      * @param  string $operator
      * @return self Provides a fluent interface
      */
-    public function setOperator($operator)
+    public function setOperator(string $operator): self
     {
         $this->operator = $operator;
 
@@ -185,7 +185,7 @@ class Operator extends AbstractExpression implements PredicateInterface
      *
      * @return string
      */
-    public function getOperator()
+    public function getOperator(): string
     {
         return $this->operator;
     }
@@ -197,7 +197,7 @@ class Operator extends AbstractExpression implements PredicateInterface
      *
      * @return self Provides a fluent interface
      */
-    public function setRight($right)
+    public function setRight($right): self
     {
         $this->right = $right;
 
@@ -226,7 +226,7 @@ class Operator extends AbstractExpression implements PredicateInterface
      * @return self Provides a fluent interface
      * @throws Exception\InvalidArgumentException
      */
-    public function setRightType($type)
+    public function setRightType($type): self
     {
         if (! in_array($type, $this->allowedTypes)) {
             throw new Exception\InvalidArgumentException(sprintf(
@@ -247,7 +247,7 @@ class Operator extends AbstractExpression implements PredicateInterface
      *
      * @return string
      */
-    public function getRightType()
+    public function getRightType(): string
     {
         return $this->rightType;
     }
@@ -257,7 +257,7 @@ class Operator extends AbstractExpression implements PredicateInterface
      *
      * @return array
      */
-    public function getExpressionData()
+    public function getExpressionData(): array
     {
         list($values[], $types[]) = $this->normalizeArgument($this->left, $this->leftType);
         list($values[], $types[]) = $this->normalizeArgument($this->right, $this->rightType);

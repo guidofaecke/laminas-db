@@ -17,7 +17,7 @@ interface ConnectionInterface
      *
      * @return string
      */
-    public function getCurrentSchema();
+    public function getCurrentSchema(): string;
 
     /**
      * Get resource
@@ -31,42 +31,42 @@ interface ConnectionInterface
      *
      * @return ConnectionInterface
      */
-    public function connect();
+    public function connect(): ConnectionInterface;
 
     /**
      * Is connected
      *
      * @return bool
      */
-    public function isConnected();
+    public function isConnected(): bool;
 
     /**
      * Disconnect
      *
      * @return ConnectionInterface
      */
-    public function disconnect();
+    public function disconnect(): ConnectionInterface;
 
     /**
      * Begin transaction
      *
      * @return ConnectionInterface
      */
-    public function beginTransaction();
+    public function beginTransaction(): ConnectionInterface;
 
     /**
      * Commit
      *
      * @return ConnectionInterface
      */
-    public function commit();
+    public function commit(): ConnectionInterface;
 
     /**
      * Rollback
      *
      * @return ConnectionInterface
      */
-    public function rollback();
+    public function rollback(): ConnectionInterface;
 
     /**
      * Execute
@@ -74,7 +74,7 @@ interface ConnectionInterface
      * @param  string $sql
      * @return ResultInterface
      */
-    public function execute($sql);
+    public function execute(string $sql): ResultInterface;
 
     /**
      * Get last generated id
@@ -82,5 +82,5 @@ interface ConnectionInterface
      * @param  null $name Ignored
      * @return int
      */
-    public function getLastGeneratedValue($name = null);
+    public function getLastGeneratedValue($name = null): int;
 }

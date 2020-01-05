@@ -52,7 +52,7 @@ class AlterTableDecorator extends AlterTable implements PlatformDecoratorInterfa
      * @param string $sql
      * @return array
      */
-    protected function getSqlInsertOffsets($sql)
+    protected function getSqlInsertOffsets($sql): array
     {
         $sqlLength   = strlen($sql);
         $insertStart = [];
@@ -86,7 +86,7 @@ class AlterTableDecorator extends AlterTable implements PlatformDecoratorInterfa
      * @param PlatformInterface $adapterPlatform
      * @return array
      */
-    protected function processAddColumns(PlatformInterface $adapterPlatform = null)
+    protected function processAddColumns(PlatformInterface $adapterPlatform = null): array
     {
         $sqls = [];
 
@@ -155,7 +155,7 @@ class AlterTableDecorator extends AlterTable implements PlatformDecoratorInterfa
      * @param PlatformInterface $adapterPlatform
      * @return array
      */
-    protected function processChangeColumns(PlatformInterface $adapterPlatform = null)
+    protected function processChangeColumns(PlatformInterface $adapterPlatform = null): array
     {
         $sqls = [];
         foreach ($this->changeColumns as $name => $column) {
@@ -225,7 +225,7 @@ class AlterTableDecorator extends AlterTable implements PlatformDecoratorInterfa
      *
      * @return string
      */
-    private function normalizeColumnOption($name)
+    private function normalizeColumnOption($name): string
     {
         return strtolower(str_replace(['-', '_', ' '], '', $name));
     }
@@ -237,7 +237,7 @@ class AlterTableDecorator extends AlterTable implements PlatformDecoratorInterfa
      *
      * @return int
      */
-    private function compareColumnOptions($columnA, $columnB)
+    private function compareColumnOptions($columnA, $columnB): int
     {
         $columnA = $this->normalizeColumnOption($columnA);
         $columnA = isset($this->columnOptionSortOrder[$columnA])

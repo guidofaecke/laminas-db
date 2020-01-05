@@ -21,8 +21,10 @@ abstract class AbstractPreparableSql extends AbstractSql implements PreparableSq
      *
      * @return StatementContainerInterface
      */
-    public function prepareStatement(AdapterInterface $adapter, StatementContainerInterface $statementContainer)
-    {
+    public function prepareStatement(
+        AdapterInterface $adapter,
+        StatementContainerInterface $statementContainer
+    ): StatementContainerInterface {
         $parameterContainer = $statementContainer->getParameterContainer();
 
         if (! $parameterContainer instanceof ParameterContainer) {

@@ -22,12 +22,12 @@ interface ColumnInterface extends ExpressionInterface
     /**
      * @return string
      */
-    public function getName();
+    public function getName(): string;
 
     /**
      * @return bool
      */
-    public function isNullable();
+    public function isNullable(): bool;
 
     /**
      * @return null|string|int
@@ -37,5 +37,5 @@ interface ColumnInterface extends ExpressionInterface
     /**
      * @return array
      */
-    public function getOptions();
+    public function getOptions(): array;
 }

@@ -10,24 +10,27 @@ declare(strict_types=1);
 
 namespace Laminas\Db\Adapter\Driver\Pgsql;
 
+use Laminas\Db\Adapter\Driver\ConnectionInterface;
 use Laminas\Db\Adapter\Driver\DriverInterface;
+use Laminas\Db\Adapter\Driver\ResultInterface;
+use Laminas\Db\Adapter\Driver\StatementInterface;
 use Laminas\Db\Adapter\Exception;
 use Laminas\Db\Adapter\Profiler;
 
 class Pgsql implements DriverInterface, Profiler\ProfilerAwareInterface
 {
     /**
-     * @var Connection
+     * @var ?Connection
      */
     protected $connection = null;
 
     /**
-     * @var Statement
+     * @var ?Statement
      */
     protected $statementPrototype = null;
 
     /**
-     * @var Result
+     * @var ?Result
      */
     protected $resultPrototype = null;
 
@@ -53,8 +56,8 @@ class Pgsql implements DriverInterface, Profiler\ProfilerAwareInterface
      */
     public function __construct(
         $connection,
-        Statement $statementPrototype = null,
-        Result $resultPrototype = null,
+        ?Statement $statementPrototype = null,
+        ?Result $resultPrototype = null,
         $options = null
     ) {
         if (! $connection instanceof Connection) {
@@ -70,7 +73,7 @@ class Pgsql implements DriverInterface, Profiler\ProfilerAwareInterface
      * @param Profiler\ProfilerInterface $profiler
      * @return self Provides a fluent interface
      */
-    public function setProfiler(Profiler\ProfilerInterface $profiler)
+    public function setProfiler(Profiler\ProfilerInterface $profiler): Profiler\ProfilerAwareInterface
     {
         $this->profiler = $profiler;
         if ($this->connection instanceof Profiler\ProfilerAwareInterface) {
@@ -85,7 +88,7 @@ class Pgsql implements DriverInterface, Profiler\ProfilerAwareInterface
     /**
      * @return null|Profiler\ProfilerInterface
      */
-    public function getProfiler()
+    public function getProfiler(): ?Profiler\ProfilerInterface
     {
         return $this->profiler;
     }
@@ -96,7 +99,7 @@ class Pgsql implements DriverInterface, Profiler\ProfilerAwareInterface
      * @param Connection $connection
      * @return self Provides a fluent interface
      */
-    public function registerConnection(Connection $connection)
+    public function registerConnection(Connection $connection): self
     {
         $this->connection = $connection;
         $this->connection->setDriver($this);
@@ -109,7 +112,7 @@ class Pgsql implements DriverInterface, Profiler\ProfilerAwareInterface
      * @param Statement $statement
      * @return self Provides a fluent interface
      */
-    public function registerStatementPrototype(Statement $statement)
+    public function registerStatementPrototype(Statement $statement): self
     {
         $this->statementPrototype = $statement;
         $this->statementPrototype->setDriver($this); // needs access to driver to createResult()
@@ -122,7 +125,7 @@ class Pgsql implements DriverInterface, Profiler\ProfilerAwareInterface
      * @param Result $result
      * @return self Provides a fluent interface
      */
-    public function registerResultPrototype(Result $result)
+    public function registerResultPrototype(Result $result): self
     {
         $this->resultPrototype = $result;
         return $this;
@@ -134,7 +137,7 @@ class Pgsql implements DriverInterface, Profiler\ProfilerAwareInterface
      * @param string $nameFormat
      * @return string
      */
-    public function getDatabasePlatformName($nameFormat = self::NAME_FORMAT_CAMELCASE)
+    public function getDatabasePlatformName($nameFormat = self::NAME_FORMAT_CAMELCASE): string
     {
         if ($nameFormat == self::NAME_FORMAT_CAMELCASE) {
             return 'Postgresql';
@@ -163,7 +166,7 @@ class Pgsql implements DriverInterface, Profiler\ProfilerAwareInterface
      *
      * @return Connection
      */
-    public function getConnection()
+    public function getConnection(): ConnectionInterface
     {
         return $this->connection;
     }
@@ -174,7 +177,7 @@ class Pgsql implements DriverInterface, Profiler\ProfilerAwareInterface
      * @param string|null $sqlOrResource
      * @return Statement
      */
-    public function createStatement($sqlOrResource = null)
+    public function createStatement($sqlOrResource = null): StatementInterface
     {
         $statement = clone $this->statementPrototype;
 
@@ -196,7 +199,7 @@ class Pgsql implements DriverInterface, Profiler\ProfilerAwareInterface
      * @param resource $resource
      * @return Result
      */
-    public function createResult($resource)
+    public function createResult($resource): ResultInterface
     {
         $result = clone $this->resultPrototype;
         $result->initialize($resource, $this->connection->getLastGeneratedValue());
@@ -208,7 +211,7 @@ class Pgsql implements DriverInterface, Profiler\ProfilerAwareInterface
      *
      * @return string
      */
-    public function getPrepareType()
+    public function getPrepareType(): string
     {
         return self::PARAMETERIZATION_POSITIONAL;
     }
@@ -220,7 +223,7 @@ class Pgsql implements DriverInterface, Profiler\ProfilerAwareInterface
      * @param mixed  $type
      * @return string
      */
-    public function formatParameterName($name, $type = null)
+    public function formatParameterName($name, $type = null): string
     {
         return '$#';
     }

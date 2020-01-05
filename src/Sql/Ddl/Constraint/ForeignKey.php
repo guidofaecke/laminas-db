@@ -79,7 +79,7 @@ class ForeignKey extends AbstractConstraint
      * @param  string $referenceTable
      * @return self Provides a fluent interface
      */
-    public function setReferenceTable($referenceTable)
+    public function setReferenceTable(string $referenceTable): self
     {
         $this->referenceTable = (string) $referenceTable;
         return $this;
@@ -88,7 +88,7 @@ class ForeignKey extends AbstractConstraint
     /**
      * @return string
      */
-    public function getReferenceTable()
+    public function getReferenceTable(): string
     {
         return $this->referenceTable;
     }
@@ -97,7 +97,7 @@ class ForeignKey extends AbstractConstraint
      * @param  null|string|array $referenceColumn
      * @return self Provides a fluent interface
      */
-    public function setReferenceColumn($referenceColumn)
+    public function setReferenceColumn($referenceColumn): self
     {
         $this->referenceColumn = (array) $referenceColumn;
 
@@ -107,7 +107,7 @@ class ForeignKey extends AbstractConstraint
     /**
      * @return array
      */
-    public function getReferenceColumn()
+    public function getReferenceColumn(): array
     {
         return $this->referenceColumn;
     }
@@ -116,7 +116,7 @@ class ForeignKey extends AbstractConstraint
      * @param  string $onDeleteRule
      * @return self Provides a fluent interface
      */
-    public function setOnDeleteRule($onDeleteRule)
+    public function setOnDeleteRule(string $onDeleteRule): self
     {
         $this->onDeleteRule = (string) $onDeleteRule;
 
@@ -126,7 +126,7 @@ class ForeignKey extends AbstractConstraint
     /**
      * @return string
      */
-    public function getOnDeleteRule()
+    public function getOnDeleteRule(): string
     {
         return $this->onDeleteRule;
     }
@@ -135,7 +135,7 @@ class ForeignKey extends AbstractConstraint
      * @param  string $onUpdateRule
      * @return self Provides a fluent interface
      */
-    public function setOnUpdateRule($onUpdateRule)
+    public function setOnUpdateRule(string $onUpdateRule): self
     {
         $this->onUpdateRule = (string) $onUpdateRule;
 
@@ -145,7 +145,7 @@ class ForeignKey extends AbstractConstraint
     /**
      * @return string
      */
-    public function getOnUpdateRule()
+    public function getOnUpdateRule(): string
     {
         return $this->onUpdateRule;
     }
@@ -153,7 +153,7 @@ class ForeignKey extends AbstractConstraint
     /**
      * @return array
      */
-    public function getExpressionData()
+    public function getExpressionData(): array
     {
         $data         = parent::getExpressionData();
         $colCount     = count($this->referenceColumn);

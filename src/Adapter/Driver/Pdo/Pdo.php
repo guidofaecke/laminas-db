@@ -93,7 +93,7 @@ class Pdo implements DriverInterface, DriverFeatureInterface, Profiler\ProfilerA
     /**
      * @return null|Profiler\ProfilerInterface
      */
-    public function getProfiler()
+    public function getProfiler(): ?Profiler\ProfilerInterface
     {
         return $this->profiler;
     }
@@ -104,7 +104,7 @@ class Pdo implements DriverInterface, DriverFeatureInterface, Profiler\ProfilerA
      * @param  Connection $connection
      * @return self Provides a fluent interface
      */
-    public function registerConnection(Connection $connection)
+    public function registerConnection(Connection $connection): self
     {
         $this->connection = $connection;
         $this->connection->setDriver($this);
@@ -116,7 +116,7 @@ class Pdo implements DriverInterface, DriverFeatureInterface, Profiler\ProfilerA
      *
      * @param Statement $statementPrototype
      */
-    public function registerStatementPrototype(Statement $statementPrototype)
+    public function registerStatementPrototype(Statement $statementPrototype): void
     {
         $this->statementPrototype = $statementPrototype;
         $this->statementPrototype->setDriver($this);
@@ -127,7 +127,7 @@ class Pdo implements DriverInterface, DriverFeatureInterface, Profiler\ProfilerA
      *
      * @param Result $resultPrototype
      */
-    public function registerResultPrototype(Result $resultPrototype)
+    public function registerResultPrototype(Result $resultPrototype): void
     {
         $this->resultPrototype = $resultPrototype;
     }

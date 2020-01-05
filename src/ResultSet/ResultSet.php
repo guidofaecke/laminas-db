@@ -64,7 +64,7 @@ class ResultSet extends AbstractResultSet
      * @return self Provides a fluent interface
      * @throws Exception\InvalidArgumentException
      */
-    public function setArrayObjectPrototype($arrayObjectPrototype)
+    public function setArrayObjectPrototype($arrayObjectPrototype): self
     {
         if (! is_object($arrayObjectPrototype)
             || (
@@ -85,7 +85,7 @@ class ResultSet extends AbstractResultSet
      *
      * @return ArrayObject
      */
-    public function getArrayObjectPrototype()
+    public function getArrayObjectPrototype(): ArrayObject
     {
         return $this->arrayObjectPrototype;
     }
@@ -95,7 +95,7 @@ class ResultSet extends AbstractResultSet
      *
      * @return string
      */
-    public function getReturnType()
+    public function getReturnType(): string
     {
         return $this->returnType;
     }

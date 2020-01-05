@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Laminas\Db\Adapter\Driver\Sqlsrv;
 
+use Laminas\Db\Adapter\Driver\ResultInterface;
 use Laminas\Db\Adapter\Driver\StatementInterface;
 use Laminas\Db\Adapter\Exception;
 use Laminas\Db\Adapter\ParameterContainer;
@@ -84,7 +85,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
      * @param  Sqlsrv $driver
      * @return self Provides a fluent interface
      */
-    public function setDriver(Sqlsrv $driver)
+    public function setDriver(Sqlsrv $driver): self
     {
         $this->driver = $driver;
         return $this;
@@ -94,7 +95,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
      * @param Profiler\ProfilerInterface $profiler
      * @return self Provides a fluent interface
      */
-    public function setProfiler(Profiler\ProfilerInterface $profiler)
+    public function setProfiler(Profiler\ProfilerInterface $profiler): self
     {
         $this->profiler = $profiler;
         return $this;
@@ -103,7 +104,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
     /**
      * @return null|Profiler\ProfilerInterface
      */
-    public function getProfiler()
+    public function getProfiler(): ?Profiler\ProfilerInterface
     {
         return $this->profiler;
     }
@@ -119,7 +120,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
      * @return self Provides a fluent interface
      * @throws Exception\InvalidArgumentException
      */
-    public function initialize($resource)
+    public function initialize($resource): self
     {
         $resourceType = get_resource_type($resource);
 
@@ -141,7 +142,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
      * @param ParameterContainer $parameterContainer
      * @return self Provides a fluent interface
      */
-    public function setParameterContainer(ParameterContainer $parameterContainer)
+    public function setParameterContainer(ParameterContainer $parameterContainer): self
     {
         $this->parameterContainer = $parameterContainer;
         return $this;
@@ -150,7 +151,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
     /**
      * @return ParameterContainer
      */
-    public function getParameterContainer()
+    public function getParameterContainer(): ParameterContainer
     {
         return $this->parameterContainer;
     }
@@ -159,7 +160,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
      * @param $resource
      * @return self Provides a fluent interface
      */
-    public function setResource($resource)
+    public function setResource($resource): self
     {
         $this->resource = $resource;
         return $this;
@@ -179,7 +180,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
      * @param string $sql
      * @return self Provides a fluent interface
      */
-    public function setSql($sql)
+    public function setSql($sql): self
     {
         $this->sql = $sql;
         return $this;
@@ -228,7 +229,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
     /**
      * @return bool
      */
-    public function isPrepared()
+    public function isPrepared(): bool
     {
         return $this->isPrepared;
     }
@@ -240,7 +241,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
      * @throws Exception\RuntimeException
      * @return Result
      */
-    public function execute($parameters = null)
+    public function execute($parameters = null): ResultInterface
     {
         /** END Standard ParameterContainer Merging Block */
         if (! $this->isPrepared) {
@@ -291,7 +292,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
      * Bind parameters from container
      *
      */
-    protected function bindParametersFromContainer()
+    protected function bindParametersFromContainer(): void
     {
         $values = $this->parameterContainer->getPositionalArray();
         $position = 0;
@@ -303,7 +304,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
     /**
      * @param array $prepareParams
      */
-    public function setPrepareParams(array $prepareParams)
+    public function setPrepareParams(array $prepareParams): void
     {
         $this->prepareParams = $prepareParams;
     }
@@ -311,7 +312,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
     /**
      * @param array $prepareOptions
      */
-    public function setPrepareOptions(array $prepareOptions)
+    public function setPrepareOptions(array $prepareOptions): void
     {
         $this->prepareOptions = $prepareOptions;
     }

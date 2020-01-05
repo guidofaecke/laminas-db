@@ -73,7 +73,7 @@ class CreateTable extends AbstractSql implements SqlInterface
      * @param  bool $temporary
      * @return self Provides a fluent interface
      */
-    public function setTemporary($temporary)
+    public function setTemporary(bool $temporary): self
     {
         $this->isTemporary = (bool) $temporary;
         return $this;
@@ -82,7 +82,7 @@ class CreateTable extends AbstractSql implements SqlInterface
     /**
      * @return bool
      */
-    public function isTemporary()
+    public function isTemporary(): bool
     {
         return $this->isTemporary;
     }
@@ -91,7 +91,7 @@ class CreateTable extends AbstractSql implements SqlInterface
      * @param  string $name
      * @return self Provides a fluent interface
      */
-    public function setTable($name)
+    public function setTable(string $name): self
     {
         $this->table = $name;
         return $this;
@@ -101,7 +101,7 @@ class CreateTable extends AbstractSql implements SqlInterface
      * @param  Column\ColumnInterface $column
      * @return self Provides a fluent interface
      */
-    public function addColumn(Column\ColumnInterface $column)
+    public function addColumn(Column\ColumnInterface $column): self
     {
         $this->columns[] = $column;
         return $this;
@@ -111,7 +111,7 @@ class CreateTable extends AbstractSql implements SqlInterface
      * @param  Constraint\ConstraintInterface $constraint
      * @return self Provides a fluent interface
      */
-    public function addConstraint(Constraint\ConstraintInterface $constraint)
+    public function addConstraint(Constraint\ConstraintInterface $constraint): self
     {
         $this->constraints[] = $constraint;
         return $this;
@@ -121,7 +121,7 @@ class CreateTable extends AbstractSql implements SqlInterface
      * @param  string|null $key
      * @return array
      */
-    public function getRawState($key = null)
+    public function getRawState(?string $key = null): array
     {
         $rawState = [
             self::COLUMNS     => $this->columns,
@@ -137,7 +137,7 @@ class CreateTable extends AbstractSql implements SqlInterface
      *
      * @return string[]
      */
-    protected function processTable(PlatformInterface $adapterPlatform = null)
+    protected function processTable(PlatformInterface $adapterPlatform = null): array
     {
         return [
             $this->isTemporary ? 'TEMPORARY ' : '',
@@ -202,7 +202,7 @@ class CreateTable extends AbstractSql implements SqlInterface
      *
      * @return string[]
      */
-    protected function processStatementEnd(PlatformInterface $adapterPlatform = null)
+    protected function processStatementEnd(PlatformInterface $adapterPlatform = null): array
     {
         return ["\n)"];
     }

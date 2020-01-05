@@ -41,7 +41,7 @@ abstract class AbstractPrecisionColumn extends AbstractLengthColumn
      *
      * @return self
      */
-    public function setDigits($digits)
+    public function setDigits(int $digits)
     {
         return $this->setLength($digits);
     }
@@ -58,7 +58,7 @@ abstract class AbstractPrecisionColumn extends AbstractLengthColumn
      * @param int|null $decimal
      * @return self Provides a fluent interface
      */
-    public function setDecimal($decimal)
+    public function setDecimal(?int $decimal)
     {
         $this->decimal = null === $decimal ? null : (int) $decimal;
 
@@ -68,7 +68,7 @@ abstract class AbstractPrecisionColumn extends AbstractLengthColumn
     /**
      * @return int|null
      */
-    public function getDecimal()
+    public function getDecimal(): ?int
     {
         return $this->decimal;
     }
@@ -76,12 +76,12 @@ abstract class AbstractPrecisionColumn extends AbstractLengthColumn
     /**
      * {@inheritDoc}
      */
-    protected function getLengthExpression()
+    protected function getLengthExpression(): string
     {
         if ($this->decimal !== null) {
             return $this->length . ',' . $this->decimal;
         }
 
-        return $this->length;
+        return (string) $this->length;
     }
 }

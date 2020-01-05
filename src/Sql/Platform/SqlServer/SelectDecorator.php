@@ -47,7 +47,7 @@ class SelectDecorator extends Select implements PlatformDecoratorInterface
      * @param ParameterContainer $parameterContainer
      * @param $sqls
      * @param $parameters
-     * @return null
+     * @return void
      */
     protected function processLimitOffset(
         PlatformInterface $platform,
@@ -55,7 +55,7 @@ class SelectDecorator extends Select implements PlatformDecoratorInterface
         ParameterContainer $parameterContainer = null,
         &$sqls,
         &$parameters
-    ) {
+    ): void {
         if ($this->limit === null && $this->offset === null) {
             return;
         }

@@ -39,7 +39,7 @@ class MetadataFeature extends AbstractFeature
         ];
     }
 
-    public function postInitialize()
+    public function postInitialize(): void
     {
         if ($this->metadata === null) {
             $this->metadata = SourceFactory::createSourceFromAdapter($this->tableGateway->adapter);

@@ -36,7 +36,7 @@ abstract class AbstractFeature extends AbstractRowGateway
     /**
      * @param AbstractRowGateway $rowGateway
      */
-    public function setRowGateway(AbstractRowGateway $rowGateway)
+    public function setRowGateway(AbstractRowGateway $rowGateway): void
     {
         $this->rowGateway = $rowGateway;
     }
@@ -44,7 +44,7 @@ abstract class AbstractFeature extends AbstractRowGateway
     /**
      * @throws \Laminas\Db\RowGateway\Exception\RuntimeException
      */
-    public function initialize()
+    public function initialize(): void
     {
         throw new Exception\RuntimeException('This method is not intended to be called on this object.');
     }
@@ -52,7 +52,7 @@ abstract class AbstractFeature extends AbstractRowGateway
     /**
      * @return array
      */
-    public function getMagicMethodSpecifications()
+    public function getMagicMethodSpecifications(): array
     {
         return [];
     }

@@ -17,7 +17,7 @@ interface DriverFeatureInterface
      *
      * @return DriverFeatureInterface
      */
-    public function setupDefaultFeatures();
+    public function setupDefaultFeatures(): void;
 
     /**
      * Add feature
@@ -26,7 +26,7 @@ interface DriverFeatureInterface
      * @param mixed $feature
      * @return DriverFeatureInterface
      */
-    public function addFeature($name, $feature);
+    public function addFeature(string $name, $feature): DriverFeatureInterface;
 
     /**
      * Get feature

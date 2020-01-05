@@ -83,7 +83,7 @@ class Connection extends AbstractConnection
     /**
      * {@inheritDoc}
      */
-    public function getCurrentSchema()
+    public function getCurrentSchema(): string
     {
         if (! $this->isConnected()) {
             $this->connect();

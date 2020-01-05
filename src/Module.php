@@ -17,7 +17,7 @@ class Module
      *
      * @return array
      */
-    public function getConfig()
+    public function getConfig(): array
     {
         $provider = new ConfigProvider();
         return [

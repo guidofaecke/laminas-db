@@ -15,7 +15,7 @@ class Sql92 extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'SQL92';
     }
@@ -23,7 +23,7 @@ class Sql92 extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function quoteValue($value)
+    public function quoteValue(string $value): string
     {
         trigger_error(
             'Attempting to quote a value without specific driver level support'

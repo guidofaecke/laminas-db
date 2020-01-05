@@ -17,5 +17,5 @@ interface PlatformDecoratorInterface
      *
      * @return self
      */
-    public function setSubject($subject);
+    public function setSubject($subject): self;
 }

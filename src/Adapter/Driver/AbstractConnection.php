@@ -50,7 +50,7 @@ abstract class AbstractConnection implements ConnectionInterface, ProfilerAwareI
     /**
      * {@inheritDoc}
      */
-    public function disconnect()
+    public function disconnect(): ConnectionInterface
     {
         if ($this->isConnected()) {
             $this->resource = null;
@@ -64,7 +64,7 @@ abstract class AbstractConnection implements ConnectionInterface, ProfilerAwareI
      *
      * @return array
      */
-    public function getConnectionParameters()
+    public function getConnectionParameters(): array
     {
         return $this->connectionParameters;
     }
@@ -74,7 +74,7 @@ abstract class AbstractConnection implements ConnectionInterface, ProfilerAwareI
      *
      * @return null|string
      */
-    public function getDriverName()
+    public function getDriverName(): ?string
     {
         return $this->driverName;
     }
@@ -82,7 +82,7 @@ abstract class AbstractConnection implements ConnectionInterface, ProfilerAwareI
     /**
      * @return null|ProfilerInterface
      */
-    public function getProfiler()
+    public function getProfiler(): ?ProfilerInterface
     {
         return $this->profiler;
     }
@@ -106,7 +106,7 @@ abstract class AbstractConnection implements ConnectionInterface, ProfilerAwareI
      *
      * @return boolean
      */
-    public function inTransaction()
+    public function inTransaction(): bool
     {
         return $this->inTransaction;
     }
@@ -115,7 +115,7 @@ abstract class AbstractConnection implements ConnectionInterface, ProfilerAwareI
      * @param  array $connectionParameters
      * @return self Provides a fluent interface
      */
-    public function setConnectionParameters(array $connectionParameters)
+    public function setConnectionParameters(array $connectionParameters): AbstractConnection
     {
         $this->connectionParameters = $connectionParameters;
 
@@ -127,7 +127,7 @@ abstract class AbstractConnection implements ConnectionInterface, ProfilerAwareI
      *
      * @return self Provides a fluent interface
      */
-    public function setProfiler(ProfilerInterface $profiler)
+    public function setProfiler(ProfilerInterface $profiler): AbstractConnection
     {
         $this->profiler = $profiler;
 

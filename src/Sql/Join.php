@@ -69,7 +69,7 @@ class Join implements Iterator, Countable
      *
      * @return array
      */
-    public function current()
+    public function current(): array
     {
         return $this->joins[$this->position];
     }
@@ -79,7 +79,7 @@ class Join implements Iterator, Countable
      *
      * @return int
      */
-    public function key()
+    public function key(): int
     {
         return $this->position;
     }
@@ -87,7 +87,7 @@ class Join implements Iterator, Countable
     /**
      * Advance to the next JOIN specification.
      */
-    public function next()
+    public function next(): void
     {
         ++$this->position;
     }
@@ -97,7 +97,7 @@ class Join implements Iterator, Countable
      *
      * @return bool
      */
-    public function valid()
+    public function valid(): bool
     {
         return isset($this->joins[$this->position]);
     }
@@ -105,7 +105,7 @@ class Join implements Iterator, Countable
     /**
      * @return array
      */
-    public function getJoins()
+    public function getJoins(): array
     {
         return $this->joins;
     }
@@ -121,7 +121,7 @@ class Join implements Iterator, Countable
      * @return self Provides a fluent interface
      * @throws Exception\InvalidArgumentException for invalid $name values.
      */
-    public function join($name, $on, $columns = [Select::SQL_STAR], $type = Join::JOIN_INNER)
+    public function join($name, $on, $columns = [Select::SQL_STAR], string $type = Join::JOIN_INNER): self
     {
         if (is_array($name) && (! is_string(key($name)) || count($name) !== 1)) {
             throw new Exception\InvalidArgumentException(
@@ -148,7 +148,7 @@ class Join implements Iterator, Countable
      *
      * @return self Provides a fluent interface
      */
-    public function reset()
+    public function reset(): self
     {
         $this->joins = [];
         return $this;
@@ -159,7 +159,7 @@ class Join implements Iterator, Countable
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->joins);
     }

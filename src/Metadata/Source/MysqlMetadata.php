@@ -14,7 +14,7 @@ use Laminas\Db\Adapter\Adapter;
 
 class MysqlMetadata extends AbstractSource
 {
-    protected function loadSchemaData()
+    protected function loadSchemaData(): void
     {
         if (isset($this->data['schemas'])) {
             return;
@@ -38,7 +38,7 @@ class MysqlMetadata extends AbstractSource
         $this->data['schemas'] = $schemas;
     }
 
-    protected function loadTableNameData($schema)
+    protected function loadTableNameData($schema): void
     {
         if (isset($this->data['table_names'][$schema])) {
             return;
@@ -94,7 +94,7 @@ class MysqlMetadata extends AbstractSource
         $this->data['table_names'][$schema] = $tables;
     }
 
-    protected function loadColumnData($table, $schema)
+    protected function loadColumnData($table, $schema): void
     {
         if (isset($this->data['columns'][$schema][$table])) {
             return;
@@ -176,7 +176,7 @@ class MysqlMetadata extends AbstractSource
         $this->data['columns'][$schema][$table] = $columns;
     }
 
-    protected function loadConstraintData($table, $schema)
+    protected function loadConstraintData($table, $schema): void
     {
         if (isset($this->data['constraints'][$schema][$table])) {
             return;
@@ -285,7 +285,7 @@ class MysqlMetadata extends AbstractSource
         $this->data['constraints'][$schema][$table] = $constraints;
     }
 
-    protected function loadConstraintDataNames($schema)
+    protected function loadConstraintDataNames($schema): void
     {
         if (isset($this->data['constraint_names'][$schema])) {
             return;
@@ -333,7 +333,7 @@ class MysqlMetadata extends AbstractSource
         $this->data['constraint_names'][$schema] = $data;
     }
 
-    protected function loadConstraintDataKeys($schema)
+    protected function loadConstraintDataKeys($schema): void
     {
         if (isset($this->data['constraint_keys'][$schema])) {
             return;
@@ -384,7 +384,7 @@ class MysqlMetadata extends AbstractSource
         $this->data['constraint_keys'][$schema] = $data;
     }
 
-    protected function loadConstraintReferences($table, $schema)
+    protected function loadConstraintReferences($table, $schema): void
     {
         parent::loadConstraintReferences($table, $schema);
 
@@ -442,7 +442,7 @@ class MysqlMetadata extends AbstractSource
         $this->data['constraint_references'][$schema] = $data;
     }
 
-    protected function loadTriggerData($schema)
+    protected function loadTriggerData($schema): void
     {
         if (isset($this->data['triggers'][$schema])) {
             return;

@@ -30,7 +30,7 @@ class Profiler implements ProfilerInterface
      * @return self Provides a fluent interface
      * @throws \Laminas\Db\Adapter\Exception\InvalidArgumentException
      */
-    public function profilerStart($target)
+    public function profilerStart($target): self
     {
         $profileInformation = [
             'sql' => '',
@@ -58,7 +58,7 @@ class Profiler implements ProfilerInterface
     /**
      * @return self Provides a fluent interface
      */
-    public function profilerFinish()
+    public function profilerFinish(): self
     {
         if (! isset($this->profiles[$this->currentIndex])) {
             throw new Exception\RuntimeException(
@@ -75,7 +75,7 @@ class Profiler implements ProfilerInterface
     /**
      * @return array|null
      */
-    public function getLastProfile()
+    public function getLastProfile(): ?array
     {
         return end($this->profiles);
     }
@@ -83,7 +83,7 @@ class Profiler implements ProfilerInterface
     /**
      * @return array
      */
-    public function getProfiles()
+    public function getProfiles(): array
     {
         return $this->profiles;
     }

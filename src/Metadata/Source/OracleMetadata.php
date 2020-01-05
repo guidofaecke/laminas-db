@@ -85,7 +85,7 @@ class OracleMetadata extends AbstractSource
      * @param string $type
      * @return string
      */
-    protected function getConstraintType($type)
+    protected function getConstraintType(string $type): string
     {
         if (isset($this->constraintTypeMap[$type])) {
             return $this->constraintTypeMap[$type];
@@ -182,7 +182,7 @@ class OracleMetadata extends AbstractSource
      * {@inheritdoc}
      * @see \Laminas\Db\Metadata\Source\AbstractSource::loadSchemaData()
      */
-    protected function loadSchemaData()
+    protected function loadSchemaData(): void
     {
         if (isset($this->data['schemas'])) {
             return;
@@ -204,7 +204,7 @@ class OracleMetadata extends AbstractSource
      * {@inheritdoc}
      * @see \Laminas\Db\Metadata\Source\AbstractSource::loadTableNameData()
      */
-    protected function loadTableNameData($schema)
+    protected function loadTableNameData($schema): self
     {
         if (isset($this->data['table_names'][$schema])) {
             return $this;

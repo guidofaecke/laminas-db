@@ -45,7 +45,7 @@ class In extends AbstractExpression implements PredicateInterface
      * @param  string|array $identifier
      * @return self Provides a fluent interface
      */
-    public function setIdentifier($identifier)
+    public function setIdentifier($identifier): self
     {
         $this->identifier = $identifier;
 
@@ -69,7 +69,7 @@ class In extends AbstractExpression implements PredicateInterface
      * @return self Provides a fluent interface
      * @throws Exception\InvalidArgumentException
      */
-    public function setValueSet($valueSet)
+    public function setValueSet($valueSet): self
     {
         if (! is_array($valueSet) && ! $valueSet instanceof Select) {
             throw new Exception\InvalidArgumentException(
@@ -96,7 +96,7 @@ class In extends AbstractExpression implements PredicateInterface
      *
      * @return array
      */
-    public function getExpressionData()
+    public function getExpressionData(): array
     {
         $identifier = $this->getIdentifier();
         $values = $this->getValueSet();

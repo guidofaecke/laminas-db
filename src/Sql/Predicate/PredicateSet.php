@@ -47,7 +47,7 @@ class PredicateSet implements PredicateInterface, Countable
      * @param  string $combination
      * @return self Provides a fluent interface
      */
-    public function addPredicate(PredicateInterface $predicate, $combination = null)
+    public function addPredicate(PredicateInterface $predicate, string $combination = null): self
     {
         if ($combination === null || ! in_array($combination, [self::OP_AND, self::OP_OR])) {
             $combination = $this->defaultCombination;
@@ -70,7 +70,7 @@ class PredicateSet implements PredicateInterface, Countable
      * @return self Provides a fluent interface
      * @throws Exception\InvalidArgumentException
      */
-    public function addPredicates($predicates, $combination = self::OP_AND)
+    public function addPredicates($predicates, string $combination = self::OP_AND): self
     {
         if ($predicates === null) {
             throw new Exception\InvalidArgumentException('Predicate cannot be null');
@@ -132,7 +132,7 @@ class PredicateSet implements PredicateInterface, Countable
      *
      * @return PredicateInterface[]
      */
-    public function getPredicates()
+    public function getPredicates(): array
     {
         return $this->predicates;
     }
@@ -143,7 +143,7 @@ class PredicateSet implements PredicateInterface, Countable
      * @param  PredicateInterface $predicate
      * @return self Provides a fluent interface
      */
-    public function orPredicate(PredicateInterface $predicate)
+    public function orPredicate(PredicateInterface $predicate): self
     {
         $this->predicates[] = [self::OP_OR, $predicate];
         return $this;
@@ -155,7 +155,7 @@ class PredicateSet implements PredicateInterface, Countable
      * @param  PredicateInterface $predicate
      * @return self Provides a fluent interface
      */
-    public function andPredicate(PredicateInterface $predicate)
+    public function andPredicate(PredicateInterface $predicate): self
     {
         $this->predicates[] = [self::OP_AND, $predicate];
         return $this;
@@ -166,7 +166,7 @@ class PredicateSet implements PredicateInterface, Countable
      *
      * @return array
      */
-    public function getExpressionData()
+    public function getExpressionData(): array
     {
         $parts = [];
         for ($i = 0, $count = count($this->predicates); $i < $count; $i++) {
@@ -195,7 +195,7 @@ class PredicateSet implements PredicateInterface, Countable
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->predicates);
     }

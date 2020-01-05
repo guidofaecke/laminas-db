@@ -42,7 +42,7 @@ class IsNull extends AbstractExpression implements PredicateInterface
      * @param  string $identifier
      * @return self Provides a fluent interface
      */
-    public function setIdentifier($identifier)
+    public function setIdentifier(string $identifier): self
     {
         $this->identifier = $identifier;
         return $this;
@@ -53,7 +53,7 @@ class IsNull extends AbstractExpression implements PredicateInterface
      *
      * @return null|string
      */
-    public function getIdentifier()
+    public function getIdentifier(): ?string
     {
         return $this->identifier;
     }
@@ -64,7 +64,7 @@ class IsNull extends AbstractExpression implements PredicateInterface
      * @param  string $specification
      * @return self Provides a fluent interface
      */
-    public function setSpecification($specification)
+    public function setSpecification(string $specification): self
     {
         $this->specification = $specification;
         return $this;
@@ -75,7 +75,7 @@ class IsNull extends AbstractExpression implements PredicateInterface
      *
      * @return string
      */
-    public function getSpecification()
+    public function getSpecification(): string
     {
         return $this->specification;
     }
@@ -85,7 +85,7 @@ class IsNull extends AbstractExpression implements PredicateInterface
      *
      * @return array
      */
-    public function getExpressionData()
+    public function getExpressionData(): array
     {
         $identifier = $this->normalizeArgument($this->identifier, self::TYPE_IDENTIFIER);
         return [[

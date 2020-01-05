@@ -34,12 +34,12 @@ class SelectDecorator extends Select implements PlatformDecoratorInterface
     /**
      * @see \Laminas\Db\Sql\Select::renderTable
      */
-    protected function renderTable($table, $alias = null)
+    protected function renderTable($table, $alias = null): string
     {
         return $table . ($alias ? ' ' . $alias : '');
     }
 
-    protected function localizeVariables()
+    protected function localizeVariables(): void
     {
         parent::localizeVariables();
         unset($this->specifications[self::LIMIT]);
@@ -54,7 +54,7 @@ class SelectDecorator extends Select implements PlatformDecoratorInterface
      * @param ParameterContainer $parameterContainer
      * @param array $sqls
      * @param array $parameters
-     * @return null
+     * @return void
      */
     protected function processLimitOffset(
         PlatformInterface $platform,
@@ -62,7 +62,7 @@ class SelectDecorator extends Select implements PlatformDecoratorInterface
         ParameterContainer $parameterContainer = null,
         &$sqls = [],
         &$parameters = []
-    ) {
+    ): void {
         if ($this->limit === null && $this->offset === null) {
             return;
         }

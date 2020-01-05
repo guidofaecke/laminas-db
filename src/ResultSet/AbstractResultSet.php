@@ -51,11 +51,12 @@ abstract class AbstractResultSet implements Iterator, ResultSetInterface
     /**
      * Set the data source for the result set
      *
-     * @param  array|Iterator|IteratorAggregate|ResultInterface $dataSource
+     * @param array|Iterator|IteratorAggregate|ResultInterface $dataSource
      * @return self Provides a fluent interface
      * @throws Exception\InvalidArgumentException
+     * @throws \Exception
      */
-    public function initialize($dataSource)
+    public function initialize($dataSource): self
     {
         // reset buffering
         if (is_array($this->buffer)) {
@@ -98,7 +99,7 @@ abstract class AbstractResultSet implements Iterator, ResultSetInterface
      * @return self Provides a fluent interface
      * @throws Exception\RuntimeException
      */
-    public function buffer()
+    public function buffer(): self
     {
         if ($this->buffer === -2) {
             throw new Exception\RuntimeException('Buffering must be enabled before iteration is started');
@@ -111,7 +112,7 @@ abstract class AbstractResultSet implements Iterator, ResultSetInterface
         return $this;
     }
 
-    public function isBuffered()
+    public function isBuffered(): bool
     {
         if ($this->buffer === -1 || is_array($this->buffer)) {
             return true;
@@ -124,7 +125,7 @@ abstract class AbstractResultSet implements Iterator, ResultSetInterface
      *
      * @return null|Iterator
      */
-    public function getDataSource()
+    public function getDataSource(): ?Iterator
     {
         return $this->dataSource;
     }
@@ -134,7 +135,7 @@ abstract class AbstractResultSet implements Iterator, ResultSetInterface
      *
      * @return int
      */
-    public function getFieldCount()
+    public function getFieldCount(): int
     {
         if (null !== $this->fieldCount) {
             return $this->fieldCount;
@@ -167,7 +168,7 @@ abstract class AbstractResultSet implements Iterator, ResultSetInterface
      *
      * @return void
      */
-    public function next()
+    public function next(): void
     {
         if ($this->buffer === null) {
             $this->buffer = -2; // implicitly disable buffering from here on
@@ -193,7 +194,7 @@ abstract class AbstractResultSet implements Iterator, ResultSetInterface
      *
      * @return array|null
      */
-    public function current()
+    public function current(): ?array
     {
         if (-1 === $this->buffer) {
             // datasource was an array when the resultset was initialized
@@ -217,7 +218,7 @@ abstract class AbstractResultSet implements Iterator, ResultSetInterface
      *
      * @return bool
      */
-    public function valid()
+    public function valid(): bool
     {
         if (is_array($this->buffer) && isset($this->buffer[$this->position])) {
             return true;
@@ -235,7 +236,7 @@ abstract class AbstractResultSet implements Iterator, ResultSetInterface
      *
      * @return void
      */
-    public function rewind()
+    public function rewind(): void
     {
         if (! is_array($this->buffer)) {
             if ($this->dataSource instanceof Iterator) {
@@ -252,7 +253,7 @@ abstract class AbstractResultSet implements Iterator, ResultSetInterface
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         if ($this->count !== null) {
             return $this->count;
@@ -271,7 +272,7 @@ abstract class AbstractResultSet implements Iterator, ResultSetInterface
      * @return array
      * @throws Exception\RuntimeException if any row is not castable to an array
      */
-    public function toArray()
+    public function toArray(): arrays
     {
         $return = [];
         foreach ($this as $row) {

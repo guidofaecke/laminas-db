@@ -31,7 +31,7 @@ class SelectDecorator extends Select implements PlatformDecoratorInterface
         $this->subject = $select;
     }
 
-    protected function localizeVariables()
+    protected function localizeVariables(): void
     {
         parent::localizeVariables();
         if ($this->limit === null && $this->offset !== null) {

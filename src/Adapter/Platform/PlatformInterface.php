@@ -22,9 +22,9 @@ interface PlatformInterface
     /**
      * Get quote identifier symbol
      *
-     * @return string
+     * @return array
      */
-    public function getQuoteIdentifierSymbol();
+    public function getQuoteIdentifierSymbol(): array;
 
     /**
      * Quote identifier
@@ -32,7 +32,7 @@ interface PlatformInterface
      * @param  string $identifier
      * @return string
      */
-    public function quoteIdentifier($identifier);
+    public function quoteIdentifier($identifier): string;
 
     /**
      * Quote identifier chain
@@ -40,14 +40,14 @@ interface PlatformInterface
      * @param string|string[] $identifierChain
      * @return string
      */
-    public function quoteIdentifierChain($identifierChain);
+    public function quoteIdentifierChain($identifierChain): string;
 
     /**
      * Get quote value symbol
      *
      * @return string
      */
-    public function getQuoteValueSymbol();
+    public function getQuoteValueSymbol(): string;
 
     /**
      * Quote value
@@ -57,7 +57,7 @@ interface PlatformInterface
      * @param  string $value
      * @return string
      */
-    public function quoteValue($value);
+    public function quoteValue(string $value): string;
 
     /**
      * Quote Trusted Value
@@ -75,14 +75,14 @@ interface PlatformInterface
      * @param string|string[] $valueList
      * @return string
      */
-    public function quoteValueList($valueList);
+    public function quoteValueList($valueList): string;
 
     /**
      * Get identifier separator
      *
      * @return string
      */
-    public function getIdentifierSeparator();
+    public function getIdentifierSeparator(): string;
 
     /**
      * Quote identifier in fragment
@@ -91,5 +91,5 @@ interface PlatformInterface
      * @param  array $additionalSafeWords
      * @return string
      */
-    public function quoteIdentifierInFragment($identifier, array $additionalSafeWords = []);
+    public function quoteIdentifierInFragment($identifier, array $additionalSafeWords = []): string;
 }

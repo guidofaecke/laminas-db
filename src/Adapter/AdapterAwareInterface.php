@@ -18,5 +18,5 @@ interface AdapterAwareInterface
      * @param Adapter $adapter
      * @return AdapterAwareInterface
      */
-    public function setDbAdapter(Adapter $adapter);
+    public function setDbAdapter(Adapter $adapter): AdapterAwareInterface;
 }

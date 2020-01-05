@@ -51,7 +51,7 @@ class Index extends AbstractIndex
      * )
      *
      */
-    public function getExpressionData()
+    public function getExpressionData(): array
     {
         $colCount     = count($this->columns);
         $values       = [];

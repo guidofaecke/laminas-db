@@ -18,17 +18,17 @@ use Laminas\Db\Adapter\Profiler;
 class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
 {
     /**
-     * @var \PDO
+     * @var ?\PDO
      */
     protected $pdo = null;
 
     /**
-     * @var Profiler\ProfilerInterface
+     * @var ?Profiler\ProfilerInterface
      */
     protected $profiler = null;
 
     /**
-     * @var Pdo
+     * @var ?Pdo
      */
     protected $driver = null;
 
@@ -40,13 +40,13 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
 
     /**
      *
-     * @var bool
+     * @var ?bool
      */
     protected $isQuery = null;
 
     /**
      *
-     * @var ParameterContainer
+     * @var ?ParameterContainer
      */
     protected $parameterContainer = null;
 
@@ -56,7 +56,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
     protected $parametersBound = false;
 
     /**
-     * @var \PDOStatement
+     * @var ?\PDOStatement
      */
     protected $resource = null;
 
@@ -72,7 +72,7 @@ class Statement implements StatementInterface, Profiler\ProfilerAwareInterface
      * @param  Pdo $driver
      * @return self Provides a fluent interface
      */
-    public function setDriver(Pdo $driver)
+    public function setDriver(Pdo $driver): self
     {
         $this->driver = $driver;
         return $this;

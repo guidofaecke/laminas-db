@@ -19,34 +19,34 @@ abstract class AbstractTableObject
 
     /**
      *
-     * @var string
+     * @var ?string
      */
     protected $name = null;
 
     /**
      *
-     * @var string
+     * @var ?string
      */
     protected $type = null;
 
     /**
      *
-     * @var array
+     * @var ?array
      */
     protected $columns = null;
 
     /**
      *
-     * @var array
+     * @var ?array
      */
     protected $constraints = null;
 
     /**
      * Constructor
      *
-     * @param string $name
+     * @param null|string $name
      */
-    public function __construct($name)
+    public function __construct(?string $name)
     {
         if ($name) {
             $this->setName($name);
@@ -58,7 +58,7 @@ abstract class AbstractTableObject
      *
      * @param array $columns
      */
-    public function setColumns(array $columns)
+    public function setColumns(array $columns): void
     {
         $this->columns = $columns;
     }
@@ -68,7 +68,7 @@ abstract class AbstractTableObject
      *
      * @return array
      */
-    public function getColumns()
+    public function getColumns(): array
     {
         return $this->columns;
     }
@@ -78,7 +78,7 @@ abstract class AbstractTableObject
      *
      * @param array $constraints
      */
-    public function setConstraints($constraints)
+    public function setConstraints(array $constraints): void
     {
         $this->constraints = $constraints;
     }
@@ -88,7 +88,7 @@ abstract class AbstractTableObject
      *
      * @return array
      */
-    public function getConstraints()
+    public function getConstraints(): array
     {
         return $this->constraints;
     }
@@ -98,7 +98,7 @@ abstract class AbstractTableObject
      *
      * @param string $name
      */
-    public function setName($name)
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
@@ -108,7 +108,7 @@ abstract class AbstractTableObject
      *
      * @return string
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }

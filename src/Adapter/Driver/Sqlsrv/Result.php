@@ -16,7 +16,7 @@ use Laminas\Db\Adapter\Driver\ResultInterface;
 class Result implements Iterator, ResultInterface
 {
     /**
-     * @var resource
+     * @var ?resource
      */
     protected $resource = null;
 
@@ -49,7 +49,7 @@ class Result implements Iterator, ResultInterface
      * @param  mixed    $generatedValue
      * @return self Provides a fluent interface
      */
-    public function initialize($resource, $generatedValue = null)
+    public function initialize($resource, $generatedValue = null): self
     {
         $this->resource = $resource;
         $this->generatedValue = $generatedValue;
@@ -57,9 +57,9 @@ class Result implements Iterator, ResultInterface
     }
 
     /**
-     * @return null
+     * @return void
      */
-    public function buffer()
+    public function buffer(): void
     {
         return;
     }
@@ -67,7 +67,7 @@ class Result implements Iterator, ResultInterface
     /**
      * @return bool
      */
-    public function isBuffered()
+    public function isBuffered(): bool
     {
         return false;
     }
@@ -102,7 +102,7 @@ class Result implements Iterator, ResultInterface
      *
      * @return bool
      */
-    public function next()
+    public function next(): bool
     {
         $this->load();
         return true;
@@ -114,7 +114,7 @@ class Result implements Iterator, ResultInterface
      * @param  int $row
      * @return mixed
      */
-    protected function load($row = SQLSRV_SCROLL_NEXT)
+    protected function load(int $row = SQLSRV_SCROLL_NEXT)
     {
         $this->currentData = sqlsrv_fetch_array($this->resource, SQLSRV_FETCH_ASSOC, $row);
         $this->currentComplete = true;
@@ -137,7 +137,7 @@ class Result implements Iterator, ResultInterface
      *
      * @return bool
      */
-    public function rewind()
+    public function rewind(): bool
     {
         $this->position = 0;
         $this->load(SQLSRV_SCROLL_FIRST);
@@ -149,7 +149,7 @@ class Result implements Iterator, ResultInterface
      *
      * @return bool
      */
-    public function valid()
+    public function valid(): bool
     {
         if ($this->currentComplete && $this->currentData) {
             return true;
@@ -163,7 +163,7 @@ class Result implements Iterator, ResultInterface
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return sqlsrv_num_rows($this->resource);
     }
@@ -181,7 +181,7 @@ class Result implements Iterator, ResultInterface
      *
      * @return bool
      */
-    public function isQueryResult()
+    public function isQueryResult(): bool
     {
         if (is_bool($this->resource)) {
             return false;
@@ -194,7 +194,7 @@ class Result implements Iterator, ResultInterface
      *
      * @return int
      */
-    public function getAffectedRows()
+    public function getAffectedRows(): int
     {
         return sqlsrv_rows_affected($this->resource);
     }

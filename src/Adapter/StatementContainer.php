@@ -26,7 +26,7 @@ class StatementContainer implements StatementContainerInterface
      * @param string|null $sql
      * @param ParameterContainer|null $parameterContainer
      */
-    public function __construct($sql = null, ParameterContainer $parameterContainer = null)
+    public function __construct(?string $sql = null, ?ParameterContainer $parameterContainer = null)
     {
         if ($sql) {
             $this->setSql($sql);
@@ -38,7 +38,7 @@ class StatementContainer implements StatementContainerInterface
      * @param $sql
      * @return self Provides a fluent interface
      */
-    public function setSql($sql)
+    public function setSql($sql): self
     {
         $this->sql = $sql;
         return $this;
@@ -47,7 +47,7 @@ class StatementContainer implements StatementContainerInterface
     /**
      * @return string
      */
-    public function getSql()
+    public function getSql(): string
     {
         return $this->sql;
     }
@@ -56,7 +56,7 @@ class StatementContainer implements StatementContainerInterface
      * @param ParameterContainer $parameterContainer
      * @return self Provides a fluent interface
      */
-    public function setParameterContainer(ParameterContainer $parameterContainer)
+    public function setParameterContainer(ParameterContainer $parameterContainer): self
     {
         $this->parameterContainer = $parameterContainer;
         return $this;
@@ -65,7 +65,7 @@ class StatementContainer implements StatementContainerInterface
     /**
      * @return null|ParameterContainer
      */
-    public function getParameterContainer()
+    public function getParameterContainer(): ?ParameterContainer
     {
         return $this->parameterContainer;
     }

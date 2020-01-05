@@ -15,7 +15,7 @@ use Laminas\Db\ResultSet\ResultSetInterface;
 
 class SqliteMetadata extends AbstractSource
 {
-    protected function loadSchemaData()
+    protected function loadSchemaData(): void
     {
         if (isset($this->data['schemas'])) {
             return;
@@ -29,7 +29,7 @@ class SqliteMetadata extends AbstractSource
         $this->data['schemas'] = $schemas;
     }
 
-    protected function loadTableNameData($schema)
+    protected function loadTableNameData($schema): void
     {
         if (isset($this->data['table_names'][$schema])) {
             return;
@@ -71,7 +71,7 @@ class SqliteMetadata extends AbstractSource
         $this->data['table_names'][$schema] = $tables;
     }
 
-    protected function loadColumnData($table, $schema)
+    protected function loadColumnData($table, $schema): void
     {
         if (isset($this->data['columns'][$schema][$table])) {
             return;
@@ -104,7 +104,7 @@ class SqliteMetadata extends AbstractSource
         $this->data['sqlite_columns'][$schema][$table] = $results;
     }
 
-    protected function loadConstraintData($table, $schema)
+    protected function loadConstraintData($table, $schema): void
     {
         if (isset($this->data['constraints'][$schema][$table])) {
             return;
@@ -187,7 +187,7 @@ class SqliteMetadata extends AbstractSource
         $this->data['constraints'][$schema][$table] = $constraints;
     }
 
-    protected function loadTriggerData($schema)
+    protected function loadTriggerData($schema): void
     {
         if (isset($this->data['triggers'][$schema])) {
             return;
@@ -232,7 +232,7 @@ class SqliteMetadata extends AbstractSource
         $this->data['triggers'][$schema] = $triggers;
     }
 
-    protected function fetchPragma($name, $value = null, $schema = null)
+    protected function fetchPragma($name, $value = null, $schema = null): array
     {
         $p = $this->adapter->getPlatform();
 
@@ -337,7 +337,7 @@ class SqliteMetadata extends AbstractSource
         return $data;
     }
 
-    protected function buildRegularExpression(array $re)
+    protected function buildRegularExpression(array $re): string
     {
         foreach ($re as &$value) {
             if (is_array($value)) {
@@ -351,7 +351,7 @@ class SqliteMetadata extends AbstractSource
         return $re;
     }
 
-    protected function getIdentifierRegularExpression()
+    protected function getIdentifierRegularExpression(): ?string
     {
         static $re = null;
         if (null === $re) {
@@ -366,7 +366,7 @@ class SqliteMetadata extends AbstractSource
         return $re;
     }
 
-    protected function getIdentifierChainRegularExpression()
+    protected function getIdentifierChainRegularExpression(): ?string
     {
         static $re = null;
         if (null === $re) {
@@ -376,7 +376,7 @@ class SqliteMetadata extends AbstractSource
         return $re;
     }
 
-    protected function getIdentifierListRegularExpression()
+    protected function getIdentifierListRegularExpression(): ?string
     {
         static $re = null;
         if (null === $re) {

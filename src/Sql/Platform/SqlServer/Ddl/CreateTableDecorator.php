@@ -35,7 +35,7 @@ class CreateTableDecorator extends CreateTable implements PlatformDecoratorInter
      * @param PlatformInterface $adapterPlatform
      * @return array
      */
-    protected function processTable(PlatformInterface $adapterPlatform = null)
+    protected function processTable(PlatformInterface $adapterPlatform = null): array
     {
         $table = ($this->isTemporary ? '#' : '') . ltrim($this->table, '#');
         return [

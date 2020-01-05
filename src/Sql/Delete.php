@@ -74,7 +74,7 @@ class Delete extends AbstractPreparableSql
      * @param  string|TableIdentifier $table
      * @return self Provides a fluent interface
      */
-    public function from($table)
+    public function from($table): self
     {
         $this->table = $table;
         return $this;
@@ -104,7 +104,7 @@ class Delete extends AbstractPreparableSql
      *
      * @return self Provides a fluent interface
      */
-    public function where($predicate, $combination = Predicate\PredicateSet::OP_AND)
+    public function where($predicate, string $combination = Predicate\PredicateSet::OP_AND): self
     {
         if ($predicate instanceof Where) {
             $this->where = $predicate;
@@ -125,7 +125,7 @@ class Delete extends AbstractPreparableSql
         PlatformInterface $platform,
         DriverInterface $driver = null,
         ParameterContainer $parameterContainer = null
-    ) {
+    ): string {
         return sprintf(
             $this->specifications[static::SPECIFICATION_DELETE],
             $this->resolveTable($this->table, $platform, $driver, $parameterContainer)

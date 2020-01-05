@@ -43,7 +43,7 @@ class Result implements ResultInterface
      * @return void
      * @throws Exception\InvalidArgumentException
      */
-    public function initialize($resource, $generatedValue)
+    public function initialize($resource, $generatedValue): void
     {
         if (! is_resource($resource) || get_resource_type($resource) != 'pgsql result') {
             throw new Exception\InvalidArgumentException('Resource not of the correct type.');
@@ -72,7 +72,7 @@ class Result implements ResultInterface
      *
      * @return void
      */
-    public function next()
+    public function next(): void
     {
         $this->position++;
     }
@@ -92,7 +92,7 @@ class Result implements ResultInterface
      *
      * @return bool
      */
-    public function valid()
+    public function valid(): bool
     {
         return ($this->position < $this->count);
     }
@@ -102,7 +102,7 @@ class Result implements ResultInterface
      *
      * @return void
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->position = 0;
     }
@@ -110,9 +110,9 @@ class Result implements ResultInterface
     /**
      * Buffer
      *
-     * @return null
+     * @return void
      */
-    public function buffer()
+    public function buffer(): void
     {
         return;
     }
@@ -122,7 +122,7 @@ class Result implements ResultInterface
      *
      * @return false
      */
-    public function isBuffered()
+    public function isBuffered(): bool
     {
         return false;
     }
@@ -132,7 +132,7 @@ class Result implements ResultInterface
      *
      * @return bool
      */
-    public function isQueryResult()
+    public function isQueryResult(): bool
     {
         return (pg_num_fields($this->resource) > 0);
     }
@@ -142,7 +142,7 @@ class Result implements ResultInterface
      *
      * @return int
      */
-    public function getAffectedRows()
+    public function getAffectedRows(): int
     {
         return pg_affected_rows($this->resource);
     }
@@ -186,7 +186,7 @@ class Result implements ResultInterface
      *
      * @return int
      */
-    public function getFieldCount()
+    public function getFieldCount(): int
     {
         return pg_num_fields($this->resource);
     }

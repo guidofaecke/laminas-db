@@ -10,6 +10,10 @@ declare(strict_types=1);
 
 namespace Laminas\Db\Adapter;
 
+use Laminas\Db\Adapter\Driver\DriverInterface;
+use Laminas\Db\Adapter\Platform\PlatformInterface;
+use Laminas\Db\Adapter\Profiler\ProfilerAwareInterface;
+use Laminas\Db\Adapter\Profiler\ProfilerInterface;
 use Laminas\Db\ResultSet;
 
 /**
@@ -109,7 +113,7 @@ class Adapter implements AdapterInterface, Profiler\ProfilerAwareInterface
      * @param Profiler\ProfilerInterface $profiler
      * @return self Provides a fluent interface
      */
-    public function setProfiler(Profiler\ProfilerInterface $profiler)
+    public function setProfiler(Profiler\ProfilerInterface $profiler): ProfilerAwareInterface
     {
         $this->profiler = $profiler;
         if ($this->driver instanceof Profiler\ProfilerAwareInterface) {
@@ -121,7 +125,7 @@ class Adapter implements AdapterInterface, Profiler\ProfilerAwareInterface
     /**
      * @return null|Profiler\ProfilerInterface
      */
-    public function getProfiler()
+    public function getProfiler(): ?ProfilerInterface
     {
         return $this->profiler;
     }
@@ -132,7 +136,7 @@ class Adapter implements AdapterInterface, Profiler\ProfilerAwareInterface
      * @throws Exception\RuntimeException
      * @return Driver\DriverInterface
      */
-    public function getDriver()
+    public function getDriver(): DriverInterface
     {
         if ($this->driver === null) {
             throw new Exception\RuntimeException('Driver has not been set or configured for this adapter.');
@@ -143,7 +147,7 @@ class Adapter implements AdapterInterface, Profiler\ProfilerAwareInterface
     /**
      * @return Platform\PlatformInterface
      */
-    public function getPlatform()
+    public function getPlatform(): PlatformInterface
     {
         return $this->platform;
     }
@@ -156,7 +160,7 @@ class Adapter implements AdapterInterface, Profiler\ProfilerAwareInterface
         return $this->queryResultSetPrototype;
     }
 
-    public function getCurrentSchema()
+    public function getCurrentSchema(): string
     {
         return $this->driver->getConnection()->getCurrentSchema();
     }
@@ -167,8 +171,9 @@ class Adapter implements AdapterInterface, Profiler\ProfilerAwareInterface
      * @param string $sql
      * @param string|array|ParameterContainer $parametersOrQueryMode
      * @param \Laminas\Db\ResultSet\ResultSetInterface $resultPrototype
-     * @throws Exception\InvalidArgumentException
      * @return Driver\StatementInterface|ResultSet\ResultSet
+     * @throws \Exception
+     * @throws Exception\InvalidArgumentException
      */
     public function query(
         $sql,

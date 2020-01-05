@@ -13,7 +13,8 @@ namespace Laminas\Db\Adapter\Profiler;
 interface ProfilerAwareInterface
 {
     /**
-     * @param  ProfilerInterface $profiler
+     * @param ProfilerInterface $profiler
+     * @return ProfilerAwareInterface
      */
-    public function setProfiler(ProfilerInterface $profiler);
+    public function setProfiler(ProfilerInterface $profiler): ProfilerAwareInterface;
 }

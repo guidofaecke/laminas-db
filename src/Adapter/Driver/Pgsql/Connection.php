@@ -11,17 +11,18 @@ declare(strict_types=1);
 namespace Laminas\Db\Adapter\Driver\Pgsql;
 
 use Laminas\Db\Adapter\Driver\AbstractConnection;
+use Laminas\Db\Adapter\Driver\ConnectionInterface;
 use Laminas\Db\Adapter\Exception;
 
 class Connection extends AbstractConnection
 {
     /**
-     * @var Pgsql
+     * @var ?Pgsql
      */
     protected $driver = null;
 
     /**
-     * @var resource
+     * @var ?resource
      */
     protected $resource = null;
 
@@ -50,7 +51,7 @@ class Connection extends AbstractConnection
      * @param resource $resource
      * @return self Provides a fluent interface
      */
-    public function setResource($resource)
+    public function setResource($resource): self
     {
         $this->resource = $resource;
 
@@ -64,7 +65,7 @@ class Connection extends AbstractConnection
      * @param  Pgsql $driver
      * @return self Provides a fluent interface
      */
-    public function setDriver(Pgsql $driver)
+    public function setDriver(Pgsql $driver): self
     {
         $this->driver = $driver;
 
@@ -75,7 +76,7 @@ class Connection extends AbstractConnection
      * @param int|null $type
      * @return self Provides a fluent interface
      */
-    public function setType($type)
+    public function setType($type): self
     {
         $invalidConectionType = ($type !== PGSQL_CONNECT_FORCE_NEW);
 
@@ -96,7 +97,7 @@ class Connection extends AbstractConnection
     /**
      * {@inheritDoc}
      *
-     * @return null|string
+     * @return void|string
      */
     public function getCurrentSchema()
     {
@@ -117,7 +118,7 @@ class Connection extends AbstractConnection
      *
      * @throws Exception\RuntimeException on failure
      */
-    public function connect()
+    public function connect(): ConnectionInterface
     {
         if (is_resource($this->resource)) {
             return $this;
@@ -159,7 +160,7 @@ class Connection extends AbstractConnection
     /**
      * {@inheritDoc}
      */
-    public function isConnected()
+    public function isConnected(): bool
     {
         return (is_resource($this->resource));
     }
@@ -167,7 +168,7 @@ class Connection extends AbstractConnection
     /**
      * {@inheritDoc}
      */
-    public function disconnect()
+    public function disconnect(): ConnectionInterface
     {
         pg_close($this->resource);
         return $this;
@@ -176,7 +177,7 @@ class Connection extends AbstractConnection
     /**
      * {@inheritDoc}
      */
-    public function beginTransaction()
+    public function beginTransaction(): ConnectionInterface
     {
         if ($this->inTransaction()) {
             throw new Exception\RuntimeException('Nested transactions are not supported');
@@ -214,7 +215,7 @@ class Connection extends AbstractConnection
     /**
      * {@inheritDoc}
      */
-    public function rollback()
+    public function rollback(): ConnectionInterface
     {
         if (! $this->isConnected()) {
             throw new Exception\RuntimeException('Must be connected before you can rollback');

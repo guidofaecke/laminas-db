@@ -44,7 +44,7 @@ class Postgresql extends AbstractPlatform
      * @return self Provides a fluent interface
      * @throws \Laminas\Db\Adapter\Exception\InvalidArgumentException
      */
-    public function setDriver($driver)
+    public function setDriver($driver): self
     {
         if ($driver instanceof Pgsql\Pgsql
             || ($driver instanceof Pdo\Pdo && $driver->getDatabasePlatformName() == 'Postgresql')
@@ -64,7 +64,7 @@ class Postgresql extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'PostgreSQL';
     }
@@ -72,7 +72,7 @@ class Postgresql extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function quoteIdentifierChain($identifierChain)
+    public function quoteIdentifierChain($identifierChain): string
     {
         return '"' . implode('"."', (array) str_replace('"', '""', $identifierChain)) . '"';
     }
@@ -80,7 +80,7 @@ class Postgresql extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function quoteValue($value)
+    public function quoteValue(string $value): string
     {
         if ($this->resource instanceof DriverInterface) {
             $this->resource = $this->resource->getConnection()->getResource();

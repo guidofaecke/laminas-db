@@ -29,7 +29,7 @@ class ConfigProvider
      *
      * @return array
      */
-    public function getDependencyConfig()
+    public function getDependencyConfig(): array
     {
         return [
             'abstract_factories' => [

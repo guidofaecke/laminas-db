@@ -60,7 +60,7 @@ class Combine extends AbstractPreparableSql
      *
      * @throws Exception\InvalidArgumentException
      */
-    public function combine($select, $type = self::COMBINE_UNION, $modifier = '')
+    public function combine($select, string $type = self::COMBINE_UNION, string $modifier = ''): self
     {
         if (is_array($select)) {
             foreach ($select as $combine) {
@@ -100,7 +100,7 @@ class Combine extends AbstractPreparableSql
      *
      * @return self
      */
-    public function union($select, $modifier = '')
+    public function union($select, string $modifier = ''): self
     {
         return $this->combine($select, self::COMBINE_UNION, $modifier);
     }
@@ -113,7 +113,7 @@ class Combine extends AbstractPreparableSql
      *
      * @return self
      */
-    public function except($select, $modifier = '')
+    public function except($select, string $modifier = ''): self
     {
         return $this->combine($select, self::COMBINE_EXCEPT, $modifier);
     }
@@ -125,7 +125,7 @@ class Combine extends AbstractPreparableSql
      * @param string $modifier
      * @return self
      */
-    public function intersect($select, $modifier = '')
+    public function intersect($select, string $modifier = ''): self
     {
         return $this->combine($select, self::COMBINE_INTERSECT, $modifier);
     }
@@ -166,7 +166,7 @@ class Combine extends AbstractPreparableSql
     /**
      * @return self Provides a fluent interface
      */
-    public function alignColumns()
+    public function alignColumns(): self
     {
         if (! $this->combine) {
             return $this;
@@ -200,7 +200,7 @@ class Combine extends AbstractPreparableSql
      *
      * @return array
      */
-    public function getRawState($key = null)
+    public function getRawState(string $key = null): array
     {
         $rawState = [
             self::COMBINE => $this->combine,

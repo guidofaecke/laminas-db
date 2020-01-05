@@ -45,7 +45,7 @@ class Oracle extends AbstractPlatform
      * @return self Provides a fluent interface
      * @throws InvalidArgumentException
      */
-    public function setDriver($driver)
+    public function setDriver($driver): self
     {
         if ($driver instanceof Oci8
             || ($driver instanceof Pdo && $driver->getDatabasePlatformName() == 'Oracle')
@@ -74,7 +74,7 @@ class Oracle extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'Oracle';
     }
@@ -82,7 +82,7 @@ class Oracle extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function quoteIdentifierChain($identifierChain)
+    public function quoteIdentifierChain($identifierChain): string
     {
         if ($this->quoteIdentifiers === false) {
             return implode('.', (array) $identifierChain);
@@ -94,7 +94,7 @@ class Oracle extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function quoteValue($value)
+    public function quoteValue($value): string
     {
         if ($this->resource instanceof DriverInterface) {
             $this->resource = $this->resource->getConnection()->getResource();

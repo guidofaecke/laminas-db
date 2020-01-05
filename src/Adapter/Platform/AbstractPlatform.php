@@ -35,7 +35,7 @@ abstract class AbstractPlatform implements PlatformInterface
     /**
      * {@inheritDoc}
      */
-    public function quoteIdentifierInFragment($identifier, array $safeWords = [])
+    public function quoteIdentifierInFragment(string $identifier, array $safeWords = []): string
     {
         if (! $this->quoteIdentifiers) {
             return $identifier;
@@ -70,7 +70,7 @@ abstract class AbstractPlatform implements PlatformInterface
     /**
      * {@inheritDoc}
      */
-    public function quoteIdentifier($identifier)
+    public function quoteIdentifier(string $identifier): string
     {
         if (! $this->quoteIdentifiers) {
             return $identifier;
@@ -84,7 +84,7 @@ abstract class AbstractPlatform implements PlatformInterface
     /**
      * {@inheritDoc}
      */
-    public function quoteIdentifierChain($identifierChain)
+    public function quoteIdentifierChain($identifierChain): string
     {
         return '"' . implode('"."', (array) str_replace('"', '\\"', $identifierChain)) . '"';
     }
@@ -92,7 +92,7 @@ abstract class AbstractPlatform implements PlatformInterface
     /**
      * {@inheritDoc}
      */
-    public function getQuoteIdentifierSymbol()
+    public function getQuoteIdentifierSymbol(): string
     {
         return $this->quoteIdentifier[0];
     }
@@ -100,7 +100,7 @@ abstract class AbstractPlatform implements PlatformInterface
     /**
      * {@inheritDoc}
      */
-    public function getQuoteValueSymbol()
+    public function getQuoteValueSymbol(): string
     {
         return '\'';
     }
@@ -108,7 +108,7 @@ abstract class AbstractPlatform implements PlatformInterface
     /**
      * {@inheritDoc}
      */
-    public function quoteValue($value)
+    public function quoteValue(string $value): string
     {
         trigger_error(
             'Attempting to quote a value in ' . get_class($this) .
@@ -128,7 +128,7 @@ abstract class AbstractPlatform implements PlatformInterface
     /**
      * {@inheritDoc}
      */
-    public function quoteValueList($valueList)
+    public function quoteValueList($valueList): string
     {
         return implode(', ', array_map([$this, 'quoteValue'], (array) $valueList));
     }
@@ -136,7 +136,7 @@ abstract class AbstractPlatform implements PlatformInterface
     /**
      * {@inheritDoc}
      */
-    public function getIdentifierSeparator()
+    public function getIdentifierSeparator(): string
     {
         return '.';
     }

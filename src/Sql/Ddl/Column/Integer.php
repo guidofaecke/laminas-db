@@ -15,7 +15,7 @@ class Integer extends Column
     /**
      * @return array
      */
-    public function getExpressionData()
+    public function getExpressionData(): array
     {
         $data    = parent::getExpressionData();
         $options = $this->getOptions();

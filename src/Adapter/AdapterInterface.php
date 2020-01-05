@@ -10,6 +10,9 @@ declare(strict_types=1);
 
 namespace Laminas\Db\Adapter;
 
+use Laminas\Db\Adapter\Driver\DriverInterface;
+use Laminas\Db\Adapter\Platform\PlatformInterface;
+
 /**
  *
  * @property Driver\DriverInterface $driver
@@ -20,10 +23,10 @@ interface AdapterInterface
     /**
      * @return Driver\DriverInterface
      */
-    public function getDriver();
+    public function getDriver(): DriverInterface;
 
     /**
      * @return Platform\PlatformInterface
      */
-    public function getPlatform();
+    public function getPlatform(): PlatformInterface;
 }

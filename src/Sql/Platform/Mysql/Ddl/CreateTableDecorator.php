@@ -52,7 +52,7 @@ class CreateTableDecorator extends CreateTable implements PlatformDecoratorInter
      * @param string $sql
      * @return array
      */
-    protected function getSqlInsertOffsets($sql)
+    protected function getSqlInsertOffsets($sql): array
     {
         $sqlLength   = strlen($sql);
         $insertStart = [];
@@ -158,7 +158,7 @@ class CreateTableDecorator extends CreateTable implements PlatformDecoratorInter
      *
      * @return string
      */
-    private function normalizeColumnOption($name)
+    private function normalizeColumnOption($name): string
     {
         return strtolower(str_replace(['-', '_', ' '], '', $name));
     }
@@ -170,7 +170,7 @@ class CreateTableDecorator extends CreateTable implements PlatformDecoratorInter
      *
      * @return int
      */
-    private function compareColumnOptions($columnA, $columnB)
+    private function compareColumnOptions($columnA, $columnB): int
     {
         $columnA = $this->normalizeColumnOption($columnA);
         $columnA = isset($this->columnOptionSortOrder[$columnA])

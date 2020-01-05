@@ -27,14 +27,14 @@ interface StatementInterface extends StatementContainerInterface
      *
      * @param string $sql
      */
-    public function prepare($sql = null);
+    public function prepare($sql = null): void;
 
     /**
      * Check if is prepared
      *
      * @return bool
      */
-    public function isPrepared();
+    public function isPrepared(): bool;
 
     /**
      * Execute
@@ -42,5 +42,5 @@ interface StatementInterface extends StatementContainerInterface
      * @param null|array|ParameterContainer $parameters
      * @return ResultInterface
      */
-    public function execute($parameters = null);
+    public function execute($parameters = null): ResultInterface;
 }

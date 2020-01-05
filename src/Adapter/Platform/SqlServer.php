@@ -46,7 +46,7 @@ class SqlServer extends AbstractPlatform
      * @return self Provides a fluent interface
      * @throws \Laminas\Db\Adapter\Exception\InvalidArgumentException
      */
-    public function setDriver($driver)
+    public function setDriver($driver): self
     {
         // handle Laminas\Db drivers
         if (($driver instanceof Pdo\Pdo && in_array($driver->getDatabasePlatformName(), ['SqlServer', 'Dblib']))
@@ -64,7 +64,7 @@ class SqlServer extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'SQLServer';
     }
@@ -72,7 +72,7 @@ class SqlServer extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function getQuoteIdentifierSymbol()
+    public function getQuoteIdentifierSymbol(): array
     {
         return $this->quoteIdentifier;
     }
@@ -80,7 +80,7 @@ class SqlServer extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function quoteIdentifierChain($identifierChain)
+    public function quoteIdentifierChain($identifierChain): string
     {
         return '[' . implode('].[', (array) $identifierChain) . ']';
     }
@@ -88,7 +88,7 @@ class SqlServer extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function quoteValue($value)
+    public function quoteValue($value): string
     {
         if ($this->resource instanceof DriverInterface) {
             $this->resource = $this->resource->getConnection()->getResource();

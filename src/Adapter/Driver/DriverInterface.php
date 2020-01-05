@@ -13,9 +13,9 @@ namespace Laminas\Db\Adapter\Driver;
 interface DriverInterface
 {
     const PARAMETERIZATION_POSITIONAL = 'positional';
-    const PARAMETERIZATION_NAMED = 'named';
-    const NAME_FORMAT_CAMELCASE = 'camelCase';
-    const NAME_FORMAT_NATURAL = 'natural';
+    const PARAMETERIZATION_NAMED      = 'named';
+    const NAME_FORMAT_CAMELCASE       = 'camelCase';
+    const NAME_FORMAT_NATURAL         = 'natural';
 
     /**
      * Get database platform name
@@ -23,21 +23,21 @@ interface DriverInterface
      * @param string $nameFormat
      * @return string
      */
-    public function getDatabasePlatformName($nameFormat = self::NAME_FORMAT_CAMELCASE);
+    public function getDatabasePlatformName($nameFormat = self::NAME_FORMAT_CAMELCASE): string;
 
     /**
      * Check environment
      *
      * @return bool
      */
-    public function checkEnvironment();
+    public function checkEnvironment(): bool;
 
     /**
      * Get connection
      *
      * @return ConnectionInterface
      */
-    public function getConnection();
+    public function getConnection(): ConnectionInterface;
 
     /**
      * Create statement
@@ -45,7 +45,7 @@ interface DriverInterface
      * @param string|resource $sqlOrResource
      * @return StatementInterface
      */
-    public function createStatement($sqlOrResource = null);
+    public function createStatement($sqlOrResource = null): StatementInterface;
 
     /**
      * Create result
@@ -53,14 +53,14 @@ interface DriverInterface
      * @param resource $resource
      * @return ResultInterface
      */
-    public function createResult($resource);
+    public function createResult($resource): ResultInterface;
 
     /**
      * Get prepare type
      *
      * @return string
      */
-    public function getPrepareType();
+    public function getPrepareType(): string ;
 
     /**
      * Format parameter name
@@ -69,7 +69,7 @@ interface DriverInterface
      * @param mixed  $type
      * @return string
      */
-    public function formatParameterName($name, $type = null);
+    public function formatParameterName($name, $type = null): string;
 
     /**
      * Get last generated value

@@ -22,6 +22,7 @@ use Laminas\Db\Sql\TableIdentifier;
 use Laminas\Db\Sql\Update;
 use Laminas\Db\Sql\Where;
 use Laminas\Db\TableGateway\Feature\EventFeatureEventsInterface;
+use Laminas\Db\TableGateway\Feature\FeatureSet;
 
 /**
  *
@@ -75,7 +76,7 @@ abstract class AbstractTableGateway implements TableGatewayInterface
     /**
      * @return bool
      */
-    public function isInitialized()
+    public function isInitialized(): bool
     {
         return $this->isInitialized;
     }
@@ -84,9 +85,8 @@ abstract class AbstractTableGateway implements TableGatewayInterface
      * Initialize
      *
      * @throws Exception\RuntimeException
-     * @return null
      */
-    public function initialize()
+    public function initialize(): void
     {
         if ($this->isInitialized) {
             return;
@@ -125,7 +125,7 @@ abstract class AbstractTableGateway implements TableGatewayInterface
      *
      * @return string
      */
-    public function getTable()
+    public function getTable(): string
     {
         return $this->table;
     }
@@ -135,7 +135,7 @@ abstract class AbstractTableGateway implements TableGatewayInterface
      *
      * @return AdapterInterface
      */
-    public function getAdapter()
+    public function getAdapter(): AdapterInterface
     {
         return $this->adapter;
     }
@@ -143,7 +143,7 @@ abstract class AbstractTableGateway implements TableGatewayInterface
     /**
      * @return array
      */
-    public function getColumns()
+    public function getColumns(): array
     {
         return $this->columns;
     }
@@ -151,7 +151,7 @@ abstract class AbstractTableGateway implements TableGatewayInterface
     /**
      * @return Feature\FeatureSet
      */
-    public function getFeatureSet()
+    public function getFeatureSet(): FeatureSet
     {
         return $this->featureSet;
     }
@@ -161,7 +161,7 @@ abstract class AbstractTableGateway implements TableGatewayInterface
      *
      * @return ResultSetInterface
      */
-    public function getResultSetPrototype()
+    public function getResultSetPrototype(): ResultSetInterface
     {
         return $this->resultSetPrototype;
     }
@@ -169,7 +169,7 @@ abstract class AbstractTableGateway implements TableGatewayInterface
     /**
      * @return Sql
      */
-    public function getSql()
+    public function getSql(): Sql
     {
         return $this->sql;
     }
@@ -180,7 +180,7 @@ abstract class AbstractTableGateway implements TableGatewayInterface
      * @param Where|\Closure|string|array $where
      * @return ResultSetInterface
      */
-    public function select($where = null)
+    public function select($where = null): ResultSetInterface
     {
         if (! $this->isInitialized) {
             $this->initialize();
@@ -201,7 +201,7 @@ abstract class AbstractTableGateway implements TableGatewayInterface
      * @param Select $select
      * @return ResultSetInterface
      */
-    public function selectWith(Select $select)
+    public function selectWith(Select $select): ResultSetInterface
     {
         if (! $this->isInitialized) {
             $this->initialize();
@@ -214,7 +214,7 @@ abstract class AbstractTableGateway implements TableGatewayInterface
      * @return ResultSetInterface
      * @throws Exception\RuntimeException
      */
-    protected function executeSelect(Select $select)
+    protected function executeSelect(Select $select): ResultSetInterface
     {
         $selectState = $select->getRawState();
         if (isset($selectState['table'])
@@ -256,7 +256,7 @@ abstract class AbstractTableGateway implements TableGatewayInterface
      * @param  array $set
      * @return int
      */
-    public function insert($set)
+    public function insert($set): int
     {
         if (! $this->isInitialized) {
             $this->initialize();
@@ -270,7 +270,7 @@ abstract class AbstractTableGateway implements TableGatewayInterface
      * @param Insert $insert
      * @return int
      */
-    public function insertWith(Insert $insert)
+    public function insertWith(Insert $insert): int
     {
         if (! $this->isInitialized) {
             $this->initialize();
@@ -285,7 +285,7 @@ abstract class AbstractTableGateway implements TableGatewayInterface
      * @return int
      * @throws Exception\RuntimeException
      */
-    protected function executeInsert(Insert $insert)
+    protected function executeInsert(Insert $insert): int
     {
         $insertState = $insert->getRawState();
         if ($insertState['table'] != $this->table) {
@@ -329,7 +329,7 @@ abstract class AbstractTableGateway implements TableGatewayInterface
      * @param  null|array $joins
      * @return int
      */
-    public function update($set, $where = null, array $joins = null)
+    public function update($set, $where = null, array $joins = null): int
     {
         if (! $this->isInitialized) {
             $this->initialize();
@@ -355,7 +355,7 @@ abstract class AbstractTableGateway implements TableGatewayInterface
      * @param \Laminas\Db\Sql\Update $update
      * @return int
      */
-    public function updateWith(Update $update)
+    public function updateWith(Update $update): int
     {
         if (! $this->isInitialized) {
             $this->initialize();
@@ -370,7 +370,7 @@ abstract class AbstractTableGateway implements TableGatewayInterface
      * @return int
      * @throws Exception\RuntimeException
      */
-    protected function executeUpdate(Update $update)
+    protected function executeUpdate(Update $update): int
     {
         $updateState = $update->getRawState();
         if ($updateState['table'] != $this->table) {
@@ -409,7 +409,7 @@ abstract class AbstractTableGateway implements TableGatewayInterface
      * @param  Where|\Closure|string|array $where
      * @return int
      */
-    public function delete($where)
+    public function delete($where): int
     {
         if (! $this->isInitialized) {
             $this->initialize();
@@ -427,7 +427,7 @@ abstract class AbstractTableGateway implements TableGatewayInterface
      * @param Delete $delete
      * @return int
      */
-    public function deleteWith(Delete $delete)
+    public function deleteWith(Delete $delete): int
     {
         $this->initialize();
         return $this->executeDelete($delete);
@@ -440,7 +440,7 @@ abstract class AbstractTableGateway implements TableGatewayInterface
      * @return int
      * @throws Exception\RuntimeException
      */
-    protected function executeDelete(Delete $delete)
+    protected function executeDelete(Delete $delete): int
     {
         $deleteState = $delete->getRawState();
         if ($deleteState['table'] != $this->table) {
@@ -478,7 +478,7 @@ abstract class AbstractTableGateway implements TableGatewayInterface
      *
      * @return int
      */
-    public function getLastInsertValue()
+    public function getLastInsertValue(): int
     {
         return $this->lastInsertValue;
     }

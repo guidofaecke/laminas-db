@@ -21,5 +21,5 @@ interface SqlInterface
      *
      * @return string
      */
-    public function getSqlString(PlatformInterface $adapterPlatform = null);
+    public function getSqlString(?PlatformInterface $adapterPlatform = null): string;
 }

@@ -74,7 +74,7 @@ class Mysql extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'MySQL';
     }
@@ -82,7 +82,7 @@ class Mysql extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function quoteIdentifierChain($identifierChain)
+    public function quoteIdentifierChain($identifierChain): string
     {
         return '`' . implode('`.`', (array) str_replace('`', '``', $identifierChain)) . '`';
     }
@@ -90,7 +90,7 @@ class Mysql extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function quoteValue($value)
+    public function quoteValue(string $value): string
     {
         if ($this->resource instanceof DriverInterface) {
             $this->resource = $this->resource->getConnection()->getResource();

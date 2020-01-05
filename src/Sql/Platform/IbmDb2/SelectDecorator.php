@@ -37,7 +37,7 @@ class SelectDecorator extends Select implements PlatformDecoratorInterface
    /**
      * @return bool
      */
-    public function getIsSelectContainDistinct()
+    public function getIsSelectContainDistinct(): bool
     {
         return $this->isSelectContainDistinct;
     }
@@ -45,7 +45,7 @@ class SelectDecorator extends Select implements PlatformDecoratorInterface
     /**
      * @param boolean $isSelectContainDistinct
      */
-    public function setIsSelectContainDistinct($isSelectContainDistinct)
+    public function setIsSelectContainDistinct(bool $isSelectContainDistinct)
     {
         $this->isSelectContainDistinct = $isSelectContainDistinct;
     }
@@ -61,7 +61,7 @@ class SelectDecorator extends Select implements PlatformDecoratorInterface
     /**
      * @return bool
      */
-    public function getSupportsLimitOffset()
+    public function getSupportsLimitOffset(): bool
     {
         return $this->supportsLimitOffset;
     }
@@ -69,7 +69,7 @@ class SelectDecorator extends Select implements PlatformDecoratorInterface
     /**
      * @param bool $supportsLimitOffset
      */
-    public function setSupportsLimitOffset($supportsLimitOffset)
+    public function setSupportsLimitOffset(bool $supportsLimitOffset): void
     {
         $this->supportsLimitOffset = $supportsLimitOffset;
     }
@@ -77,12 +77,12 @@ class SelectDecorator extends Select implements PlatformDecoratorInterface
     /**
      * @see Select::renderTable
      */
-    protected function renderTable($table, $alias = null)
+    protected function renderTable($table, $alias = null): string
     {
         return $table . ' ' . $alias;
     }
 
-    protected function localizeVariables()
+    protected function localizeVariables(): void
     {
         parent::localizeVariables();
         // set specifications
@@ -105,7 +105,7 @@ class SelectDecorator extends Select implements PlatformDecoratorInterface
         ParameterContainer $parameterContainer = null,
         &$sqls,
         &$parameters
-    ) {
+    ): void {
         if ($this->limit === null && $this->offset === null) {
             return;
         }

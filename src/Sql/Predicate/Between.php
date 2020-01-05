@@ -45,7 +45,7 @@ class Between extends AbstractExpression implements PredicateInterface
      * @param  string $identifier
      * @return self Provides a fluent interface
      */
-    public function setIdentifier($identifier)
+    public function setIdentifier(string $identifier): self
     {
         $this->identifier = $identifier;
         return $this;
@@ -56,7 +56,7 @@ class Between extends AbstractExpression implements PredicateInterface
      *
      * @return null|string
      */
-    public function getIdentifier()
+    public function getIdentifier(): ?string
     {
         return $this->identifier;
     }
@@ -67,7 +67,7 @@ class Between extends AbstractExpression implements PredicateInterface
      * @param  int|float|string $minValue
      * @return self Provides a fluent interface
      */
-    public function setMinValue($minValue)
+    public function setMinValue($minValue): self
     {
         $this->minValue = $minValue;
         return $this;
@@ -89,7 +89,7 @@ class Between extends AbstractExpression implements PredicateInterface
      * @param  int|float|string $maxValue
      * @return self Provides a fluent interface
      */
-    public function setMaxValue($maxValue)
+    public function setMaxValue($maxValue): self
     {
         $this->maxValue = $maxValue;
         return $this;
@@ -111,7 +111,7 @@ class Between extends AbstractExpression implements PredicateInterface
      * @param  string $specification
      * @return self Provides a fluent interface
      */
-    public function setSpecification($specification)
+    public function setSpecification(string $specification): self
     {
         $this->specification = $specification;
         return $this;
@@ -122,7 +122,7 @@ class Between extends AbstractExpression implements PredicateInterface
      *
      * @return string
      */
-    public function getSpecification()
+    public function getSpecification(): string
     {
         return $this->specification;
     }
@@ -132,7 +132,7 @@ class Between extends AbstractExpression implements PredicateInterface
      *
      * @return array
      */
-    public function getExpressionData()
+    public function getExpressionData(): array
     {
         list($values[], $types[]) = $this->normalizeArgument($this->identifier, self::TYPE_IDENTIFIER);
         list($values[], $types[]) = $this->normalizeArgument($this->minValue, self::TYPE_VALUE);

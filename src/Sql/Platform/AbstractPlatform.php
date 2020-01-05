@@ -45,7 +45,7 @@ class AbstractPlatform implements PlatformDecoratorInterface, PreparableSqlInter
      *
      * @return void
      */
-    public function setTypeDecorator($type, PlatformDecoratorInterface $decorator)
+    public function setTypeDecorator($type, PlatformDecoratorInterface $decorator): void
     {
         $this->decorators[$type] = $decorator;
     }
@@ -70,7 +70,7 @@ class AbstractPlatform implements PlatformDecoratorInterface, PreparableSqlInter
     /**
      * @return array|PlatformDecoratorInterface[]
      */
-    public function getDecorators()
+    public function getDecorators(): array
     {
         return $this->decorators;
     }
@@ -99,7 +99,7 @@ class AbstractPlatform implements PlatformDecoratorInterface, PreparableSqlInter
      *
      * @throws Exception\RuntimeException
      */
-    public function getSqlString(PlatformInterface $adapterPlatform = null)
+    public function getSqlString(PlatformInterface $adapterPlatform = null): string
     {
         if (! $this->subject instanceof SqlInterface) {
             throw new Exception\RuntimeException(

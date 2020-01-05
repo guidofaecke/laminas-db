@@ -67,7 +67,7 @@ class Expression extends AbstractExpression
      * @return self Provides a fluent interface
      * @throws Exception\InvalidArgumentException
      */
-    public function setExpression($expression)
+    public function setExpression($expression): self
     {
         if (! is_string($expression) || $expression == '') {
             throw new Exception\InvalidArgumentException('Supplied expression must be a string.');
@@ -79,7 +79,7 @@ class Expression extends AbstractExpression
     /**
      * @return string
      */
-    public function getExpression()
+    public function getExpression(): string
     {
         return $this->expression;
     }
@@ -89,7 +89,7 @@ class Expression extends AbstractExpression
      * @return self Provides a fluent interface
      * @throws Exception\InvalidArgumentException
      */
-    public function setParameters($parameters)
+    public function setParameters($parameters): self
     {
         if (! is_scalar($parameters) && ! is_array($parameters)) {
             throw new Exception\InvalidArgumentException('Expression parameters must be a scalar or array.');
@@ -101,7 +101,7 @@ class Expression extends AbstractExpression
     /**
      * @return array
      */
-    public function getParameters()
+    public function getParameters(): array
     {
         return $this->parameters;
     }
@@ -111,7 +111,7 @@ class Expression extends AbstractExpression
      * @param array $types
      * @return self Provides a fluent interface
      */
-    public function setTypes(array $types)
+    public function setTypes(array $types): self
     {
         $this->types = $types;
         return $this;
@@ -121,7 +121,7 @@ class Expression extends AbstractExpression
      * @deprecated
      * @return array
      */
-    public function getTypes()
+    public function getTypes(): array
     {
         return $this->types;
     }
@@ -130,7 +130,7 @@ class Expression extends AbstractExpression
      * @return array
      * @throws Exception\RuntimeException
      */
-    public function getExpressionData()
+    public function getExpressionData(): array
     {
         $parameters = (is_scalar($this->parameters)) ? [$this->parameters] : $this->parameters;
         $parametersCount = count($parameters);

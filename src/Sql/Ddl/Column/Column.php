@@ -76,7 +76,7 @@ class Column implements ColumnInterface
     /**
      * @return null|string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -85,7 +85,7 @@ class Column implements ColumnInterface
      * @param  bool $nullable
      * @return self Provides a fluent interface
      */
-    public function setNullable($nullable)
+    public function setNullable(bool $nullable)
     {
         $this->isNullable = (bool) $nullable;
         return $this;
@@ -94,7 +94,7 @@ class Column implements ColumnInterface
     /**
      * @return bool
      */
-    public function isNullable()
+    public function isNullable(): bool
     {
         return $this->isNullable;
     }
@@ -132,7 +132,7 @@ class Column implements ColumnInterface
      * @param  string $value
      * @return self Provides a fluent interface
      */
-    public function setOption($name, $value)
+    public function setOption(string $name, string $value)
     {
         $this->options[$name] = $value;
         return $this;
@@ -141,7 +141,7 @@ class Column implements ColumnInterface
     /**
      * @return array
      */
-    public function getOptions()
+    public function getOptions(): array
     {
         return $this->options;
     }
@@ -161,7 +161,7 @@ class Column implements ColumnInterface
     /**
      * @return array
      */
-    public function getExpressionData()
+    public function getExpressionData(): array
     {
         $spec = $this->specification;
 

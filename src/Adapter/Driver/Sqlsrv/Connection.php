@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace Laminas\Db\Adapter\Driver\Sqlsrv;
 
 use Laminas\Db\Adapter\Driver\AbstractConnection;
+use Laminas\Db\Adapter\Driver\ConnectionInterface;
 use Laminas\Db\Adapter\Driver\Sqlsrv\Exception\ErrorException;
 use Laminas\Db\Adapter\Exception;
 
@@ -44,7 +45,7 @@ class Connection extends AbstractConnection
      * @param  Sqlsrv $driver
      * @return self Provides a fluent interface
      */
-    public function setDriver(Sqlsrv $driver)
+    public function setDriver(Sqlsrv $driver): self
     {
         $this->driver = $driver;
 
@@ -54,7 +55,7 @@ class Connection extends AbstractConnection
     /**
      * {@inheritDoc}
      */
-    public function getCurrentSchema()
+    public function getCurrentSchema(): string
     {
         if (! $this->isConnected()) {
             $this->connect();
@@ -73,7 +74,7 @@ class Connection extends AbstractConnection
      * @return self Provides a fluent interface
      * @throws Exception\InvalidArgumentException
      */
-    public function setResource($resource)
+    public function setResource($resource): self
     {
         if (get_resource_type($resource) !== 'SQL Server Connection') {
             throw new Exception\InvalidArgumentException('Resource provided was not of type SQL Server Connection');
@@ -142,7 +143,7 @@ class Connection extends AbstractConnection
     /**
      * {@inheritDoc}
      */
-    public function isConnected()
+    public function isConnected(): bool
     {
         return (is_resource($this->resource));
     }

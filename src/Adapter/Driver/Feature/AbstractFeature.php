@@ -25,7 +25,7 @@ abstract class AbstractFeature
      * @param DriverInterface $driver
      * @return void
      */
-    public function setDriver(DriverInterface $driver)
+    public function setDriver(DriverInterface $driver): void
     {
         $this->driver = $driver;
     }
@@ -35,5 +35,5 @@ abstract class AbstractFeature
      *
      * @return string
      */
-    abstract public function getName();
+    abstract public function getName(): string;
 }

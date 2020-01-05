@@ -51,7 +51,7 @@ abstract class AbstractLengthColumn extends Column
     /**
      * @return string
      */
-    protected function getLengthExpression()
+    protected function getLengthExpression(): string
     {
         return (string) $this->length;
     }

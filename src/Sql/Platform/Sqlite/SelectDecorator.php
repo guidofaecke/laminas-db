@@ -39,7 +39,7 @@ class SelectDecorator extends Select implements PlatformDecoratorInterface
     /**
      * {@inheritDoc}
      */
-    protected function localizeVariables()
+    protected function localizeVariables(): void
     {
         parent::localizeVariables();
         $this->specifications[self::COMBINE] = '%1$s %2$s';
@@ -52,7 +52,7 @@ class SelectDecorator extends Select implements PlatformDecoratorInterface
         PlatformInterface $platform,
         DriverInterface $driver = null,
         ParameterContainer $parameterContainer = null
-    ) {
+    ): string {
         return '';
     }
 
@@ -100,7 +100,7 @@ class SelectDecorator extends Select implements PlatformDecoratorInterface
         PlatformInterface $platform,
         DriverInterface $driver = null,
         ParameterContainer $parameterContainer = null
-    ) {
+    ): string {
         return '';
     }
 }

@@ -20,7 +20,7 @@ abstract class AbstractTimestampColumn extends Column
     /**
      * @return array
      */
-    public function getExpressionData()
+    public function getExpressionData(): array
     {
         $spec = $this->specification;
 

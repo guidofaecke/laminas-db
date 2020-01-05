@@ -37,7 +37,7 @@ class IbmDb2 extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'IBM DB2';
     }
@@ -45,7 +45,7 @@ class IbmDb2 extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function quoteIdentifierInFragment($identifier, array $safeWords = [])
+    public function quoteIdentifierInFragment(string $identifier, array $safeWords = []): string
     {
         if (! $this->quoteIdentifiers) {
             return $identifier;
@@ -74,7 +74,7 @@ class IbmDb2 extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function quoteIdentifierChain($identifierChain)
+    public function quoteIdentifierChain($identifierChain): string
     {
         if ($this->quoteIdentifiers === false) {
             if (is_array($identifierChain)) {
@@ -93,7 +93,7 @@ class IbmDb2 extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function quoteValue($value)
+    public function quoteValue(string $value): string
     {
         if (function_exists('db2_escape_string')) {
             return '\'' . db2_escape_string($value) . '\'';
@@ -119,7 +119,7 @@ class IbmDb2 extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function getIdentifierSeparator()
+    public function getIdentifierSeparator(): string
     {
         return $this->identifierSeparator;
     }

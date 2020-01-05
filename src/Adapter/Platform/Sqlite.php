@@ -46,7 +46,7 @@ class Sqlite extends AbstractPlatform
      * @return self Provides a fluent interface
      * @throws \Laminas\Db\Adapter\Exception\InvalidArgumentException
      */
-    public function setDriver($driver)
+    public function setDriver($driver): self
     {
         if (($driver instanceof \PDO && $driver->getAttribute(\PDO::ATTR_DRIVER_NAME) == 'sqlite')
             || ($driver instanceof Pdo\Pdo && $driver->getDatabasePlatformName() == 'Sqlite')
@@ -63,7 +63,7 @@ class Sqlite extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'SQLite';
     }
@@ -71,7 +71,7 @@ class Sqlite extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function quoteValue($value)
+    public function quoteValue($value): string
     {
         $resource = $this->resource;
 

@@ -38,7 +38,7 @@ abstract class AbstractSql implements SqlInterface
     /**
      * {@inheritDoc}
      */
-    public function getSqlString(PlatformInterface $adapterPlatform = null)
+    public function getSqlString(PlatformInterface $adapterPlatform = null): string
     {
         $adapterPlatform = ($adapterPlatform) ?: new DefaultAdapterPlatform;
         return $this->buildSqlString($adapterPlatform);
@@ -54,7 +54,7 @@ abstract class AbstractSql implements SqlInterface
         PlatformInterface $platform,
         DriverInterface $driver = null,
         ParameterContainer $parameterContainer = null
-    ) {
+    ): string {
         $this->localizeVariables();
 
         $sqls       = [];
@@ -91,7 +91,7 @@ abstract class AbstractSql implements SqlInterface
      * @param string $alias
      * @return string
      */
-    protected function renderTable($table, $alias = null)
+    protected function renderTable(string $table, string $alias = null): string
     {
         return $table . ($alias ? ' AS ' . $alias : '');
     }
@@ -111,8 +111,8 @@ abstract class AbstractSql implements SqlInterface
         PlatformInterface $platform,
         DriverInterface $driver = null,
         ParameterContainer $parameterContainer = null,
-        $namedParameterPrefix = null
-    ) {
+        ?string $namedParameterPrefix = null
+    ): string {
         $namedParameterPrefix = ! $namedParameterPrefix
             ? $namedParameterPrefix
             : $this->processInfo['paramPrefix'] . $namedParameterPrefix;
@@ -215,7 +215,7 @@ abstract class AbstractSql implements SqlInterface
      *
      * @throws Exception\RuntimeException
      */
-    protected function createSqlFromSpecificationAndParameters($specifications, $parameters)
+    protected function createSqlFromSpecificationAndParameters($specifications, array $parameters): string
     {
         if (is_string($specifications)) {
             return vsprintf($specifications, $parameters);
@@ -283,9 +283,9 @@ abstract class AbstractSql implements SqlInterface
     protected function processSubSelect(
         Select $subselect,
         PlatformInterface $platform,
-        DriverInterface $driver = null,
-        ParameterContainer $parameterContainer = null
-    ) {
+        ?DriverInterface $driver = null,
+        ?ParameterContainer $parameterContainer = null
+    ): string {
         if ($this instanceof PlatformDecoratorInterface) {
             $decorator = clone $this;
             $decorator->setSubject($subselect);
@@ -323,8 +323,8 @@ abstract class AbstractSql implements SqlInterface
     protected function processJoin(
         Join $joins,
         PlatformInterface $platform,
-        DriverInterface $driver = null,
-        ParameterContainer $parameterContainer = null
+        ?DriverInterface $driver = null,
+        ?ParameterContainer $parameterContainer = null
     ) {
         if (! $joins->count()) {
             return;
@@ -401,10 +401,10 @@ abstract class AbstractSql implements SqlInterface
     protected function resolveColumnValue(
         $column,
         PlatformInterface $platform,
-        DriverInterface $driver = null,
-        ParameterContainer $parameterContainer = null,
+        ?DriverInterface $driver = null,
+        ?ParameterContainer $parameterContainer = null,
         $namedParameterPrefix = null
-    ) {
+    ): string {
         $namedParameterPrefix = ! $namedParameterPrefix
             ? $namedParameterPrefix
             : $this->processInfo['paramPrefix'] . $namedParameterPrefix;
@@ -446,7 +446,7 @@ abstract class AbstractSql implements SqlInterface
         PlatformInterface $platform,
         DriverInterface $driver = null,
         ParameterContainer $parameterContainer = null
-    ) {
+    ): string {
         $schema = null;
         if ($table instanceof TableIdentifier) {
             list($table, $schema) = $table->getTableAndSchema();
@@ -467,7 +467,7 @@ abstract class AbstractSql implements SqlInterface
     /**
      * Copy variables from the subject into the local properties
      */
-    protected function localizeVariables()
+    protected function localizeVariables(): void
     {
         if (! $this instanceof PlatformDecoratorInterface) {
             return;

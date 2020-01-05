@@ -195,7 +195,7 @@ class Select extends AbstractPreparableSql
      * @return self Provides a fluent interface
      * @throws Exception\InvalidArgumentException
      */
-    public function from($table)
+    public function from($table): self
     {
         if ($this->tableReadOnly) {
             throw new Exception\InvalidArgumentException(
@@ -224,7 +224,7 @@ class Select extends AbstractPreparableSql
      * @return self Provides a fluent interface
      * @throws Exception\InvalidArgumentException
      */
-    public function quantifier($quantifier)
+    public function quantifier($quantifier): self
     {
         if (! is_string($quantifier) && ! $quantifier instanceof ExpressionInterface) {
             throw new Exception\InvalidArgumentException(
@@ -254,7 +254,7 @@ class Select extends AbstractPreparableSql
      * @param  bool  $prefixColumnsWithTable
      * @return self Provides a fluent interface
      */
-    public function columns(array $columns, $prefixColumnsWithTable = true)
+    public function columns(array $columns, bool $prefixColumnsWithTable = true): self
     {
         $this->columns = $columns;
         $this->prefixColumnsWithTable = (bool) $prefixColumnsWithTable;
@@ -271,7 +271,7 @@ class Select extends AbstractPreparableSql
      * @return self Provides a fluent interface
      * @throws Exception\InvalidArgumentException
      */
-    public function join($name, $on, $columns = self::SQL_STAR, $type = self::JOIN_INNER)
+    public function join($name, $on, $columns = self::SQL_STAR, string $type = self::JOIN_INNER): self
     {
         $this->joins->join($name, $on, $columns, $type);
 
@@ -286,7 +286,7 @@ class Select extends AbstractPreparableSql
      * @return self Provides a fluent interface
      * @throws Exception\InvalidArgumentException
      */
-    public function where($predicate, $combination = Predicate\PredicateSet::OP_AND)
+    public function where($predicate, string $combination = Predicate\PredicateSet::OP_AND): self
     {
         if ($predicate instanceof Where) {
             $this->where = $predicate;
@@ -300,7 +300,7 @@ class Select extends AbstractPreparableSql
      * @param mixed $group
      * @return self Provides a fluent interface
      */
-    public function group($group)
+    public function group($group): self
     {
         if (is_array($group)) {
             foreach ($group as $o) {
@@ -319,7 +319,7 @@ class Select extends AbstractPreparableSql
      * @param  string $combination One of the OP_* constants from Predicate\PredicateSet
      * @return self Provides a fluent interface
      */
-    public function having($predicate, $combination = Predicate\PredicateSet::OP_AND)
+    public function having($predicate, string $combination = Predicate\PredicateSet::OP_AND): self
     {
         if ($predicate instanceof Having) {
             $this->having = $predicate;
@@ -333,7 +333,7 @@ class Select extends AbstractPreparableSql
      * @param string|array|Expression $order
      * @return self Provides a fluent interface
      */
-    public function order($order)
+    public function order($order): self
     {
         if (is_string($order)) {
             if (strpos($order, ',') !== false) {
@@ -359,7 +359,7 @@ class Select extends AbstractPreparableSql
      * @return self Provides a fluent interface
      * @throws Exception\InvalidArgumentException
      */
-    public function limit($limit)
+    public function limit(int $limit): self
     {
         if (! is_numeric($limit)) {
             throw new Exception\InvalidArgumentException(sprintf(
@@ -378,7 +378,7 @@ class Select extends AbstractPreparableSql
      * @return self Provides a fluent interface
      * @throws Exception\InvalidArgumentException
      */
-    public function offset($offset)
+    public function offset(int $offset): self
     {
         if (! is_numeric($offset)) {
             throw new Exception\InvalidArgumentException(sprintf(
@@ -399,7 +399,7 @@ class Select extends AbstractPreparableSql
      * @return self Provides a fluent interface
      * @throws Exception\InvalidArgumentException
      */
-    public function combine(Select $select, $type = self::COMBINE_UNION, $modifier = '')
+    public function combine(Select $select, string $type = self::COMBINE_UNION, string $modifier = ''): self
     {
         if ($this->combine !== []) {
             throw new Exception\InvalidArgumentException(
@@ -419,7 +419,7 @@ class Select extends AbstractPreparableSql
      * @return self Provides a fluent interface
      * @throws Exception\InvalidArgumentException
      */
-    public function reset($part)
+    public function reset(string $part): self
     {
         switch ($part) {
             case self::TABLE:
@@ -469,7 +469,7 @@ class Select extends AbstractPreparableSql
      * @param $specification
      * @return self Provides a fluent interface
      */
-    public function setSpecification($index, $specification)
+    public function setSpecification($index, $specification): self
     {
         if (! method_exists($this, 'process' . $index)) {
             throw new Exception\InvalidArgumentException('Not a valid specification name.');
@@ -501,7 +501,7 @@ class Select extends AbstractPreparableSql
      *
      * @return bool
      */
-    public function isTableReadOnly()
+    public function isTableReadOnly(): bool
     {
         return $this->tableReadOnly;
     }
@@ -538,7 +538,7 @@ class Select extends AbstractPreparableSql
         PlatformInterface $platform,
         DriverInterface $driver = null,
         ParameterContainer $parameterContainer = null
-    ) {
+    ): ?array {
         $expr = 1;
 
         list($table, $fromTable) = $this->resolveTable($this->table, $platform, $driver, $parameterContainer);
@@ -800,7 +800,7 @@ class Select extends AbstractPreparableSql
      * @param PlatformInterface $platform
      * @param DriverInterface $driver
      * @param ParameterContainer $parameterContainer
-     * @return string
+     * @return array
      */
     protected function resolveTable(
         $table,

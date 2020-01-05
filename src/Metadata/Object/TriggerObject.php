@@ -122,7 +122,7 @@ class TriggerObject
      *
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -133,7 +133,7 @@ class TriggerObject
      * @param string $name
      * @return self Provides a fluent interface
      */
-    public function setName($name)
+    public function setName(string $name): self
     {
         $this->name = $name;
         return $this;
@@ -144,7 +144,7 @@ class TriggerObject
      *
      * @return string
      */
-    public function getEventManipulation()
+    public function getEventManipulation(): string
     {
         return $this->eventManipulation;
     }
@@ -155,7 +155,7 @@ class TriggerObject
      * @param string $eventManipulation
      * @return self Provides a fluent interface
      */
-    public function setEventManipulation($eventManipulation)
+    public function setEventManipulation(string $eventManipulation): self
     {
         $this->eventManipulation = $eventManipulation;
         return $this;
@@ -166,7 +166,7 @@ class TriggerObject
      *
      * @return string
      */
-    public function getEventObjectCatalog()
+    public function getEventObjectCatalog(): string
     {
         return $this->eventObjectCatalog;
     }
@@ -177,7 +177,7 @@ class TriggerObject
      * @param string $eventObjectCatalog
      * @return self Provides a fluent interface
      */
-    public function setEventObjectCatalog($eventObjectCatalog)
+    public function setEventObjectCatalog(string $eventObjectCatalog): self
     {
         $this->eventObjectCatalog = $eventObjectCatalog;
         return $this;
@@ -188,7 +188,7 @@ class TriggerObject
      *
      * @return string
      */
-    public function getEventObjectSchema()
+    public function getEventObjectSchema(): string
     {
         return $this->eventObjectSchema;
     }
@@ -199,7 +199,7 @@ class TriggerObject
      * @param string $eventObjectSchema
      * @return self Provides a fluent interface
      */
-    public function setEventObjectSchema($eventObjectSchema)
+    public function setEventObjectSchema(string $eventObjectSchema): self
     {
         $this->eventObjectSchema = $eventObjectSchema;
         return $this;
@@ -210,7 +210,7 @@ class TriggerObject
      *
      * @return string
      */
-    public function getEventObjectTable()
+    public function getEventObjectTable(): string
     {
         return $this->eventObjectTable;
     }
@@ -221,7 +221,7 @@ class TriggerObject
      * @param string $eventObjectTable
      * @return self Provides a fluent interface
      */
-    public function setEventObjectTable($eventObjectTable)
+    public function setEventObjectTable(string $eventObjectTable): self
     {
         $this->eventObjectTable = $eventObjectTable;
         return $this;
@@ -232,7 +232,7 @@ class TriggerObject
      *
      * @return string
      */
-    public function getActionOrder()
+    public function getActionOrder(): string
     {
         return $this->actionOrder;
     }
@@ -243,7 +243,7 @@ class TriggerObject
      * @param string $actionOrder
      * @return self Provides a fluent interface
      */
-    public function setActionOrder($actionOrder)
+    public function setActionOrder(string $actionOrder): self
     {
         $this->actionOrder = $actionOrder;
         return $this;
@@ -254,7 +254,7 @@ class TriggerObject
      *
      * @return string
      */
-    public function getActionCondition()
+    public function getActionCondition(): string
     {
         return $this->actionCondition;
     }
@@ -265,7 +265,7 @@ class TriggerObject
      * @param string $actionCondition
      * @return self Provides a fluent interface
      */
-    public function setActionCondition($actionCondition)
+    public function setActionCondition(string $actionCondition): self
     {
         $this->actionCondition = $actionCondition;
         return $this;
@@ -276,7 +276,7 @@ class TriggerObject
      *
      * @return string
      */
-    public function getActionStatement()
+    public function getActionStatement(): string
     {
         return $this->actionStatement;
     }
@@ -287,7 +287,7 @@ class TriggerObject
      * @param string $actionStatement
      * @return self Provides a fluent interface
      */
-    public function setActionStatement($actionStatement)
+    public function setActionStatement(string $actionStatement): self
     {
         $this->actionStatement = $actionStatement;
         return $this;
@@ -298,7 +298,7 @@ class TriggerObject
      *
      * @return string
      */
-    public function getActionOrientation()
+    public function getActionOrientation(): string
     {
         return $this->actionOrientation;
     }
@@ -309,7 +309,7 @@ class TriggerObject
      * @param string $actionOrientation
      * @return self Provides a fluent interface
      */
-    public function setActionOrientation($actionOrientation)
+    public function setActionOrientation(string $actionOrientation): self
     {
         $this->actionOrientation = $actionOrientation;
         return $this;
@@ -320,7 +320,7 @@ class TriggerObject
      *
      * @return string
      */
-    public function getActionTiming()
+    public function getActionTiming(): string
     {
         return $this->actionTiming;
     }
@@ -331,7 +331,7 @@ class TriggerObject
      * @param string $actionTiming
      * @return self Provides a fluent interface
      */
-    public function setActionTiming($actionTiming)
+    public function setActionTiming(string $actionTiming): self
     {
         $this->actionTiming = $actionTiming;
         return $this;
@@ -342,7 +342,7 @@ class TriggerObject
      *
      * @return string
      */
-    public function getActionReferenceOldTable()
+    public function getActionReferenceOldTable(): self
     {
         return $this->actionReferenceOldTable;
     }
@@ -353,7 +353,7 @@ class TriggerObject
      * @param string $actionReferenceOldTable
      * @return self Provides a fluent interface
      */
-    public function setActionReferenceOldTable($actionReferenceOldTable)
+    public function setActionReferenceOldTable(string $actionReferenceOldTable): self
     {
         $this->actionReferenceOldTable = $actionReferenceOldTable;
         return $this;
@@ -364,7 +364,7 @@ class TriggerObject
      *
      * @return string
      */
-    public function getActionReferenceNewTable()
+    public function getActionReferenceNewTable(): self
     {
         return $this->actionReferenceNewTable;
     }
@@ -375,7 +375,7 @@ class TriggerObject
      * @param string $actionReferenceNewTable
      * @return self Provides a fluent interface
      */
-    public function setActionReferenceNewTable($actionReferenceNewTable)
+    public function setActionReferenceNewTable(string $actionReferenceNewTable): self
     {
         $this->actionReferenceNewTable = $actionReferenceNewTable;
         return $this;
@@ -386,7 +386,7 @@ class TriggerObject
      *
      * @return string
      */
-    public function getActionReferenceOldRow()
+    public function getActionReferenceOldRow(): string
     {
         return $this->actionReferenceOldRow;
     }
@@ -397,7 +397,7 @@ class TriggerObject
      * @param string $actionReferenceOldRow
      * @return self Provides a fluent interface
      */
-    public function setActionReferenceOldRow($actionReferenceOldRow)
+    public function setActionReferenceOldRow(string $actionReferenceOldRow): self
     {
         $this->actionReferenceOldRow = $actionReferenceOldRow;
         return $this;
@@ -408,7 +408,7 @@ class TriggerObject
      *
      * @return string
      */
-    public function getActionReferenceNewRow()
+    public function getActionReferenceNewRow(): string
     {
         return $this->actionReferenceNewRow;
     }
@@ -419,7 +419,7 @@ class TriggerObject
      * @param string $actionReferenceNewRow
      * @return self Provides a fluent interface
      */
-    public function setActionReferenceNewRow($actionReferenceNewRow)
+    public function setActionReferenceNewRow(string $actionReferenceNewRow): self
     {
         $this->actionReferenceNewRow = $actionReferenceNewRow;
         return $this;
@@ -430,7 +430,7 @@ class TriggerObject
      *
      * @return \DateTime
      */
-    public function getCreated()
+    public function getCreated(): \DateTime
     {
         return $this->created;
     }
@@ -441,7 +441,7 @@ class TriggerObject
      * @param \DateTime $created
      * @return self Provides a fluent interface
      */
-    public function setCreated($created)
+    public function setCreated(\DateTime $created): self
     {
         $this->created = $created;
         return $this;

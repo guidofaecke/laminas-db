@@ -68,7 +68,7 @@ class ParameterContainer implements Iterator, ArrayAccess, Countable
      * @param  string $name
      * @return bool
      */
-    public function offsetExists($name)
+    public function offsetExists($name): bool
     {
         return (isset($this->data[$name]));
     }

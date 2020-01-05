@@ -25,7 +25,7 @@ class GlobalAdapterFeature extends AbstractFeature
      *
      * @param Adapter $adapter
      */
-    public static function setStaticAdapter(Adapter $adapter)
+    public static function setStaticAdapter(Adapter $adapter): void
     {
         $class = get_called_class();
 
@@ -41,7 +41,7 @@ class GlobalAdapterFeature extends AbstractFeature
      * @throws Exception\RuntimeException
      * @return Adapter
      */
-    public static function getStaticAdapter()
+    public static function getStaticAdapter(): Adapter
     {
         $class = get_called_class();
 
@@ -61,7 +61,7 @@ class GlobalAdapterFeature extends AbstractFeature
     /**
      * after initialization, retrieve the original adapter as "master"
      */
-    public function preInitialize()
+    public function preInitialize(): void
     {
         $this->tableGateway->adapter = self::getStaticAdapter();
     }

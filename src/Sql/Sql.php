@@ -42,12 +42,12 @@ class Sql
     /**
      * @return null|\Laminas\Db\Adapter\AdapterInterface
      */
-    public function getAdapter()
+    public function getAdapter(): ?AdapterInterface
     {
         return $this->adapter;
     }
 
-    public function hasTable()
+    public function hasTable(): bool
     {
         return ($this->table !== null);
     }
@@ -57,7 +57,7 @@ class Sql
      * @return self Provides a fluent interface
      * @throws Exception\InvalidArgumentException
      */
-    public function setTable($table)
+    public function setTable($table): self
     {
         if (is_string($table) || is_array($table) || $table instanceof TableIdentifier) {
             $this->table = $table;
@@ -79,7 +79,7 @@ class Sql
         return $this->sqlPlatform;
     }
 
-    public function select($table = null)
+    public function select($table = null): Select
     {
         if ($this->table !== null && $table !== null) {
             throw new Exception\InvalidArgumentException(sprintf(
@@ -90,7 +90,7 @@ class Sql
         return new Select(($table) ?: $this->table);
     }
 
-    public function insert($table = null)
+    public function insert($table = null): Insert
     {
         if ($this->table !== null && $table !== null) {
             throw new Exception\InvalidArgumentException(sprintf(
@@ -101,7 +101,7 @@ class Sql
         return new Insert(($table) ?: $this->table);
     }
 
-    public function update($table = null)
+    public function update($table = null): Update
     {
         if ($this->table !== null && $table !== null) {
             throw new Exception\InvalidArgumentException(sprintf(
@@ -112,7 +112,7 @@ class Sql
         return new Update(($table) ?: $this->table);
     }
 
-    public function delete($table = null)
+    public function delete($table = null): Delete
     {
         if ($this->table !== null && $table !== null) {
             throw new Exception\InvalidArgumentException(sprintf(
@@ -151,7 +151,7 @@ class Sql
      *
      * @deprecated Deprecated in 2.4. Use buildSqlString() instead
      */
-    public function getSqlStringForSqlObject(SqlInterface $sqlObject, PlatformInterface $platform = null)
+    public function getSqlStringForSqlObject(SqlInterface $sqlObject, PlatformInterface $platform = null): string
     {
         $platform = ($platform) ?: $this->adapter->getPlatform();
         return $this->sqlPlatform->setSubject($sqlObject)->getSqlString($platform);
@@ -165,7 +165,7 @@ class Sql
      *
      * @throws Exception\InvalidArgumentException
      */
-    public function buildSqlString(SqlInterface $sqlObject, AdapterInterface $adapter = null)
+    public function buildSqlString(SqlInterface $sqlObject, AdapterInterface $adapter = null): string
     {
         return $this
             ->sqlPlatform
