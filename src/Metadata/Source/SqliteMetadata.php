@@ -257,7 +257,7 @@ class SqliteMetadata extends AbstractSource
     protected function parseView($sql)
     {
         static $re = null;
-        if (null === $re) {
+        if ($re === null) {
             $identifierChain = $this->getIdentifierChainRegularExpression();
             $re = $this->buildRegularExpression([
                 'CREATE',
@@ -282,7 +282,7 @@ class SqliteMetadata extends AbstractSource
     protected function parseTrigger($sql)
     {
         static $re = null;
-        if (null === $re) {
+        if ($re === null) {
             $identifier = $this->getIdentifierRegularExpression();
             $identifierList = $this->getIdentifierListRegularExpression();
             $identifierChain = $this->getIdentifierChainRegularExpression();
@@ -354,7 +354,7 @@ class SqliteMetadata extends AbstractSource
     protected function getIdentifierRegularExpression(): ?string
     {
         static $re = null;
-        if (null === $re) {
+        if ($re === null) {
             $re = '(?:' . implode('|', [
                 '"(?:[^"\\\\]++|\\\\.)*+"',
                 '`(?:[^`]++|``)*+`',
@@ -369,7 +369,7 @@ class SqliteMetadata extends AbstractSource
     protected function getIdentifierChainRegularExpression(): ?string
     {
         static $re = null;
-        if (null === $re) {
+        if ($re === null) {
             $identifier = $this->getIdentifierRegularExpression();
             $re = $identifier . '(?:\\s*\\.\\s*' . $identifier . ')*+';
         }
@@ -379,7 +379,7 @@ class SqliteMetadata extends AbstractSource
     protected function getIdentifierListRegularExpression(): ?string
     {
         static $re = null;
-        if (null === $re) {
+        if ($re === null) {
             $identifier = $this->getIdentifierRegularExpression();
             $re = $identifier . '(?:\\s*,\\s*' . $identifier . ')*+';
         }

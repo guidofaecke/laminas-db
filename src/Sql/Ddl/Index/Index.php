@@ -31,7 +31,7 @@ class Index extends AbstractIndex
     {
         $this->setColumns($columns);
 
-        $this->name    = null === $name ? null : (string) $name;
+        $this->name    = $name === null ? null : (string) $name;
         $this->lengths = $lengths;
     }
 

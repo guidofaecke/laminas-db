@@ -43,7 +43,7 @@ class TableIdentifier
             throw new Exception\InvalidArgumentException('$table must be a valid table name, empty string given');
         }
 
-        if (null === $schema) {
+        if ($schema === null) {
             $this->schema = null;
         } else {
             if (! (is_string($schema) || is_callable([$schema, '__toString']))) {

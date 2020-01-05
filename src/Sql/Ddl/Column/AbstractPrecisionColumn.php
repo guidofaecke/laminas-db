@@ -60,7 +60,7 @@ abstract class AbstractPrecisionColumn extends AbstractLengthColumn
      */
     public function setDecimal(?int $decimal)
     {
-        $this->decimal = null === $decimal ? null : (int) $decimal;
+        $this->decimal = $decimal === null ? null : (int) $decimal;
 
         return $this;
     }
